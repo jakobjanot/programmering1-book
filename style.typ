@@ -96,7 +96,7 @@
       #text(size: 16pt)[#author]
       #v(1cm)
       #if date != none [
-        #text(size: 14pt)[#date.display("[day].[month].[year]")]
+        #text(size: 14pt, style: "italic")[Bygget: #date.display("[day].[month].[year]")]
       ]
       #v(1fr)
     ]
