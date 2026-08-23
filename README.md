@@ -37,3 +37,37 @@ Run tasks in VS Code:
 
 You can also use `Terminal -> Run Task...` from the menu.
 For quick builds, `Cmd+Shift+B` runs the default build task (`Compile Book`).
+
+## GitHub Pages deployment
+
+Pushing to `main` triggers `.github/workflows/deploy-pages.yml`, which runs
+`just all site` to:
+
+- Compile `main.typ` to a downloadable PDF (`site/programmering1-java.pdf`).
+- Compile `main-html.typ` (using `style-html.typ`, a simplified HTML-only
+  template) to `site/index.html`.
+
+It then deploys the `site/` folder to GitHub Pages.
+
+The book's front page shows the build date, taken from `datetime.today()` at
+compile time, so both the PDF and the website always reflect when they were
+last built.
+
+### Building locally with `just`
+
+The [`justfile`](justfile) wraps the Typst commands:
+
+```sh
+just pdf     # build/programmering1-java.pdf
+just html    # build/index.html + build/style.css
+just all     # both, into build/ by default, or e.g. `just all site`
+```
+
+The website's styling lives in [`style.css`](style.css), linked from
+`style-html.typ` via a `<link>` tag. Edit that file directly to change the
+site's look; `just html` copies it next to `index.html`.
+
+HTML export is an experimental Typst feature, so `style-html.typ` intentionally
+avoids page-specific constructs (`set page`, `pagebreak`, `page(...)`) that
+`style.typ` uses for the PDF.
+
