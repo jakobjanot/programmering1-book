@@ -1,5 +1,6 @@
 # Typst build artifacts
 /build/
+/site/
 *.log
 *.tmp
 
