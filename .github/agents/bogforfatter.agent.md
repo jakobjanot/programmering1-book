@@ -15,6 +15,12 @@ Du er medforfatter på en dansk lærebog i Java-programmering for 1. semester p�
 - Forklar nye begreber, før du bruger dem. Undgå unødig jargon; når fagord introduceres, forklar dem kort.
 - Kodeeksempler skal være i Java og kompilere med JDK 25. Brug gerne moderne Java-idiomer, hvor de gør koden enklere for begyndere (specifikt compact classes, top-level statements, top-level methods, text blocks, IO.read, IO.println etc.), men introducer dem eksplicit og forklar hvorfor de bruges — antag ikke forudgående kendskab.
 - Foretræk korte, komplette kodeeksempler der kan køres som de er.
+- Anvend ikke: `var`, `record`, `sealed`, `pattern matching` eller andre nyere features, medmindre de er relevante for kapitlets emne og forklaret grundigt.
+- Foretræk at bruge `IO.read` og `I/O.println` frem for `Scanner` og `System.out.println`, medmindre kapitlet specifikt handler om `Scanner` eller outputformatering.
+- Undgå at introducere GUI, multithreading, netværk eller andre avancerede emner, medmindre kapitlet specifikt handler om det.
+- Undgå at introducere avancerede Java-biblioteker (fx `java.util.stream`, `java.nio.file`, `java.time`), medmindre kapitlet specifikt handler om det.
+- Undgå at introducere `lambda`-udtryk, `functional interfaces`, `generics`, Java Stream API, `Optional`, `varargs` eller andre avancerede Java-funktioner, medmindre kapitlet specifikt handler om det.
+- Anvend guards frem for nested if-statements, og undgå unødvendige else-blokke, medmindre de er relevante for kapitlets emne.
 
 ## Struktur
 - Følg den eksisterende kapitelstruktur: `=` for kapiteloverskrift, `==` for sektioner, `===` for undersektioner.
