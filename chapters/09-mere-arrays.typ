@@ -54,60 +54,57 @@ char sidsteBogstav = tekst.charAt(tekst.length() - 1);  // 'd'
 Lad os bygge et program der analyserer tekst:
 
 ```java
-public class TextAnalyzer {
+int countChar(String text, char c) {
+    int count = 0;
     
-    public static int countChar(String text, char c) {
-        int count = 0;
-        
-        // Metode 1: Brug charAt() med indeks
-        for (int i = 0; i < text.length(); i++) {
-            if (Character.toLowerCase(text.charAt(i)) == Character.toLowerCase(c)) {
-                count++;
-            }
-        }
-        
-        return count;
-    }
-    
-    public static int countCharAlternative(String text, char c) {
-        int count = 0;
-        
-        // Metode 2: Konverter til char array og brug for-each
-        char[] chars = text.toCharArray();
-        for (char ch : chars) {
-            if (Character.toLowerCase(ch) == Character.toLowerCase(c)) {
-                count++;
-            }
-        }
-        
-        return count;
-    }
-    
-    public static void analyzeText(String text) {
-        System.out.println("Tekstanalyse af: " + text.substring(0, Math.min(50, text.length())) + "...");
-        System.out.println("Længde: " + text.length() + " karakterer");
-        
-        // Analyser bogstavfrekvens
-        char[] alphabet = "abcdefghijklmnopqrstuvwxyzæøå".toCharArray();
-        
-        System.out.println("\nBogstavfrekvens:");
-        for (char letter : alphabet) {
-            int count = countChar(text, letter);
-            if (count > 0) {
-                System.out.println(letter + ": " + count + " gange");
-            }
+    // Metode 1: Brug charAt() med indeks
+    for (int i = 0; i < text.length(); i++) {
+        if (Character.toLowerCase(text.charAt(i)) == Character.toLowerCase(c)) {
+            count++;
         }
     }
     
-    public static void main(String[] args) {
-        String eventyr = """
-            Der var engang en fattig Prinds; han havde et Kongerige, 
-            der var ganske lille, men det var da altid stort nok til 
-            at gifte sig paa, og gifte sig det vilde han.
-            """;
-            
-        analyzeText(eventyr);
+    return count;
+}
+
+int countCharAlternative(String text, char c) {
+    int count = 0;
+    
+    // Metode 2: Konverter til char array og brug for-each
+    char[] chars = text.toCharArray();
+    for (char ch : chars) {
+        if (Character.toLowerCase(ch) == Character.toLowerCase(c)) {
+            count++;
+        }
     }
+    
+    return count;
+}
+
+void analyzeText(String text) {
+    IO.println("Tekstanalyse af: " + text.substring(0, Math.min(50, text.length())) + "...");
+    IO.println("Længde: " + text.length() + " karakterer");
+    
+    // Analyser bogstavfrekvens
+    char[] alphabet = "abcdefghijklmnopqrstuvwxyzæøå".toCharArray();
+    
+    IO.println("\nBogstavfrekvens:");
+    for (char letter : alphabet) {
+        int count = countChar(text, letter);
+        if (count > 0) {
+            IO.println(letter + ": " + count + " gange");
+        }
+    }
+}
+
+void main() {
+    String eventyr = """
+        Der var engang en fattig Prinds; han havde et Kongerige, 
+        der var ganske lille, men det var da altid stort nok til 
+        at gifte sig paa, og gifte sig det vilde han.
+        """;
+        
+    analyzeText(eventyr);
 }
 ```
 
@@ -130,22 +127,20 @@ Java leverer en `Arrays` klasse med mange nyttige metoder til array manipulation
 ```java
 import java.util.Arrays;
 
-public class ArrayUtilities {
-    public static void main(String[] args) {
-        int[] numbers = {42, 17, 89, 3, 56};
-        String[] names = {"Anna", "Bob", "Charlie"};
-        
-        // toString() - pæn udskrivning
-        System.out.println("Numbers: " + Arrays.toString(numbers));
-        // Output: Numbers: [42, 17, 89, 3, 56]
-        
-        System.out.println("Names: " + Arrays.toString(names));
-        // Output: Names: [Anna, Bob, Charlie]
-        
-        // Uden Arrays.toString() får vi ikke læsbar output
-        System.out.println("Numbers direkte: " + numbers);
-        // Output: Numbers direkte: [I@6bc7c054 (hash kode)
-    }
+void main() {
+    int[] numbers = {42, 17, 89, 3, 56};
+    String[] names = {"Anna", "Bob", "Charlie"};
+    
+    // toString() - pæn udskrivning
+    IO.println("Numbers: " + Arrays.toString(numbers));
+    // Output: Numbers: [42, 17, 89, 3, 56]
+    
+    IO.println("Names: " + Arrays.toString(names));
+    // Output: Names: [Anna, Bob, Charlie]
+    
+    // Uden Arrays.toString() får vi ikke læsbar output
+    IO.println("Numbers direkte: " + numbers);
+    // Output: Numbers direkte: [I@6bc7c054 (hash kode)
 }
 ```
 
@@ -154,24 +149,22 @@ public class ArrayUtilities {
 ```java
 import java.util.Arrays;
 
-public class SortingExample {
-    public static void main(String[] args) {
-        int[] numbers = {42, 17, 89, 3, 56, 23, 91, 7};
-        String[] names = {"Zebra", "Apple", "Banana", "Charlie"};
-        
-        System.out.println("Før sortering: " + Arrays.toString(numbers));
-        
-        // Sortér array (ændrer det originale array!)
-        Arrays.sort(numbers);
-        
-        System.out.println("Efter sortering: " + Arrays.toString(numbers));
-        // Output: [3, 7, 17, 23, 42, 56, 89, 91]
-        
-        // Strings sorteres alfabetisk
-        Arrays.sort(names);
-        System.out.println("Sorterede navne: " + Arrays.toString(names));
-        // Output: [Apple, Banana, Charlie, Zebra]
-    }
+void main() {
+    int[] numbers = {42, 17, 89, 3, 56, 23, 91, 7};
+    String[] names = {"Zebra", "Apple", "Banana", "Charlie"};
+    
+    IO.println("Før sortering: " + Arrays.toString(numbers));
+    
+    // Sortér array (ændrer det originale array!)
+    Arrays.sort(numbers);
+    
+    IO.println("Efter sortering: " + Arrays.toString(numbers));
+    // Output: [3, 7, 17, 23, 42, 56, 89, 91]
+    
+    // Strings sorteres alfabetisk
+    Arrays.sort(names);
+    IO.println("Sorterede navne: " + Arrays.toString(names));
+    // Output: [Apple, Banana, Charlie, Zebra]
 }
 ```
 
@@ -180,30 +173,28 @@ public class SortingExample {
 ```java
 import java.util.Arrays;
 
-public class ArrayCopying {
-    public static void main(String[] args) {
-        int[] original = {1, 2, 3, 4, 5};
-        
-        // copyOf() - kopierer til ny længde
-        int[] copy1 = Arrays.copyOf(original, original.length);
-        int[] copy2 = Arrays.copyOf(original, 3);  // Kun første 3 elementer
-        int[] copy3 = Arrays.copyOf(original, 8);  // Udvider med 0'er
-        
-        System.out.println("Original: " + Arrays.toString(original));
-        System.out.println("Fuld kopi: " + Arrays.toString(copy1));
-        System.out.println("Kort kopi: " + Arrays.toString(copy2));
-        System.out.println("Lang kopi: " + Arrays.toString(copy3));
-        
-        // copyOfRange() - kopierer et udsnit
-        int[] range = Arrays.copyOfRange(original, 1, 4);  // Fra indeks 1 til 3
-        System.out.println("Range kopi: " + Arrays.toString(range));
-        
-        // Test at kopierne er uafhængige
-        copy1[0] = 999;
-        System.out.println("Efter ændring af kopi:");
-        System.out.println("Original: " + Arrays.toString(original));  // Uændret
-        System.out.println("Kopi: " + Arrays.toString(copy1));         // Ændret
-    }
+void main() {
+    int[] original = {1, 2, 3, 4, 5};
+    
+    // copyOf() - kopierer til ny længde
+    int[] copy1 = Arrays.copyOf(original, original.length);
+    int[] copy2 = Arrays.copyOf(original, 3);  // Kun første 3 elementer
+    int[] copy3 = Arrays.copyOf(original, 8);  // Udvider med 0'er
+    
+    IO.println("Original: " + Arrays.toString(original));
+    IO.println("Fuld kopi: " + Arrays.toString(copy1));
+    IO.println("Kort kopi: " + Arrays.toString(copy2));
+    IO.println("Lang kopi: " + Arrays.toString(copy3));
+    
+    // copyOfRange() - kopierer et udsnit
+    int[] range = Arrays.copyOfRange(original, 1, 4);  // Fra indeks 1 til 3
+    IO.println("Range kopi: " + Arrays.toString(range));
+    
+    // Test at kopierne er uafhængige
+    copy1[0] = 999;
+    IO.println("Efter ændring af kopi:");
+    IO.println("Original: " + Arrays.toString(original));  // Uændret
+    IO.println("Kopi: " + Arrays.toString(copy1));         // Ændret
 }
 ```
 
@@ -214,58 +205,54 @@ Det er kritisk at forstå forskellen mellem at kopiere references og at kopiere 
 === Shallow Copy (Reference Kopiering)
 
 ```java
-public class ReferenceExample {
-    public static void main(String[] args) {
-        int[] array1 = {1, 2, 3, 4, 5};
-        int[] array2 = array1;  // IKKE en kopi - samme reference!
-        
-        System.out.println("Før ændring:");
-        System.out.println("Array1: " + Arrays.toString(array1));
-        System.out.println("Array2: " + Arrays.toString(array2));
-        
-        // Ændrer array2, men det påvirker også array1!
-        array2[0] = 999;
-        
-        System.out.println("Efter ændring af array2[0]:");
-        System.out.println("Array1: " + Arrays.toString(array1));  // Også ændret!
-        System.out.println("Array2: " + Arrays.toString(array2));
-        
-        // Test om de er samme objekt
-        System.out.println("Er det samme objekt? " + (array1 == array2));  // true
-    }
+void main() {
+    int[] array1 = {1, 2, 3, 4, 5};
+    int[] array2 = array1;  // IKKE en kopi - samme reference!
+    
+    IO.println("Før ændring:");
+    IO.println("Array1: " + Arrays.toString(array1));
+    IO.println("Array2: " + Arrays.toString(array2));
+    
+    // Ændrer array2, men det påvirker også array1!
+    array2[0] = 999;
+    
+    IO.println("Efter ændring af array2[0]:");
+    IO.println("Array1: " + Arrays.toString(array1));  // Også ændret!
+    IO.println("Array2: " + Arrays.toString(array2));
+    
+    // Test om de er samme objekt
+    IO.println("Er det samme objekt? " + (array1 == array2));  // true
 }
 ```
 
 === Deep Copy (Værdi Kopiering)
 
 ```java
-public class ValueCopyExample {
-    public static void main(String[] args) {
-        int[] array1 = {1, 2, 3, 4, 5};
-        
-        // Måde 1: Arrays.copyOf()
-        int[] array2 = Arrays.copyOf(array1, array1.length);
-        
-        // Måde 2: Manual kopiering
-        int[] array3 = new int[array1.length];
-        for (int i = 0; i < array1.length; i++) {
-            array3[i] = array1[i];
-        }
-        
-        // Måde 3: System.arraycopy()
-        int[] array4 = new int[array1.length];
-        System.arraycopy(array1, 0, array4, 0, array1.length);
-        
-        // Test uafhængighed
-        array2[0] = 888;
-        array3[1] = 777;
-        array4[2] = 666;
-        
-        System.out.println("Original: " + Arrays.toString(array1));
-        System.out.println("Copy 1:   " + Arrays.toString(array2));
-        System.out.println("Copy 2:   " + Arrays.toString(array3));
-        System.out.println("Copy 3:   " + Arrays.toString(array4));
+void main() {
+    int[] array1 = {1, 2, 3, 4, 5};
+    
+    // Måde 1: Arrays.copyOf()
+    int[] array2 = Arrays.copyOf(array1, array1.length);
+    
+    // Måde 2: Manual kopiering
+    int[] array3 = new int[array1.length];
+    for (int i = 0; i < array1.length; i++) {
+        array3[i] = array1[i];
     }
+    
+    // Måde 3: System.arraycopy()
+    int[] array4 = new int[array1.length];
+    System.arraycopy(array1, 0, array4, 0, array1.length);
+    
+    // Test uafhængighed
+    array2[0] = 888;
+    array3[1] = 777;
+    array4[2] = 666;
+    
+    IO.println("Original: " + Arrays.toString(array1));
+    IO.println("Copy 1:   " + Arrays.toString(array2));
+    IO.println("Copy 2:   " + Arrays.toString(array3));
+    IO.println("Copy 3:   " + Arrays.toString(array4));
 }
 ```
 
@@ -406,10 +393,10 @@ public class ArrayRotation {
     
     public static void main(String[] args) {
         int[] numbers = {1, 2, 3, 4, 5, 6, 7};
-        System.out.println("Original: " + Arrays.toString(numbers));
+        IO.println("Original: " + Arrays.toString(numbers));
         
         rotateRight(numbers, 3);
-        System.out.println("Roteret 3 til højre: " + Arrays.toString(numbers));
+        IO.println("Roteret 3 til højre: " + Arrays.toString(numbers));
         // Output: [5, 6, 7, 1, 2, 3, 4]
     }
 }
@@ -464,40 +451,38 @@ public class ArrayMerge {
 Nu hvor vi forstår arrays bedre, kan vi udforske karakterer mere dybdegående:
 
 ```java
-public class CharacterExploration {
-    public static void main(String[] args) {
-        // ASCII værdi til karakter
-        char c1 = 74;   // 'J'
-        char c2 = 65;   // 'A'
-        char c3 = 86;   // 'V'
-        char c4 = 65;   // 'A'
-        
-        System.out.println("Jeg elsker " + c1 + c2 + c3 + c4);  // "Jeg elsker JAVA"
-        
-        // Iterér gennem alfabetet
-        System.out.println("Alfabetet:");
-        for (char c = 'A'; c <= 'Z'; c++) {
-            System.out.print(c + " ");
-        }
-        System.out.println();
-        
-        // Vorsigtig med internationale karakterer!
-        System.out.println("Fra A til Å:");
-        for (char c = 'A'; c <= 'Å'; c++) {
-            System.out.print(c);
-            if (c == 'Z') System.out.print(" -> ");  // Marker skiftet
-        }
-        System.out.println();
-        
-        // Bedre måde: Eksplicit array med danske karakterer
-        char[] danishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ".toCharArray();
-        
-        System.out.println("Dansk alfabet:");
-        for (char letter : danishAlphabet) {
-            System.out.print(letter + " ");
-        }
-        System.out.println();
+void main() {
+    // ASCII værdi til karakter
+    char c1 = 74;   // 'J'
+    char c2 = 65;   // 'A'
+    char c3 = 86;   // 'V'
+    char c4 = 65;   // 'A'
+    
+    IO.println("Jeg elsker " + c1 + c2 + c3 + c4);  // "Jeg elsker JAVA"
+    
+    // Iterér gennem alfabetet
+    IO.println("Alfabetet:");
+    for (char c = 'A'; c <= 'Z'; c++) {
+        IO.print(c + " ");
     }
+    IO.println();
+    
+    // Vorsigtig med internationale karakterer!
+    IO.println("Fra A til Å:");
+    for (char c = 'A'; c <= 'Å'; c++) {
+        IO.print(c);
+        if (c == 'Z') IO.print(" -> ");  // Marker skiftet
+    }
+    IO.println();
+    
+    // Bedre måde: Eksplicit array med danske karakterer
+    char[] danishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ".toCharArray();
+    
+    IO.println("Dansk alfabet:");
+    for (char letter : danishAlphabet) {
+        IO.print(letter + " ");
+    }
+    IO.println();
 }
 ```
 

@@ -100,7 +100,7 @@ Når `SavingsAccount` arver fra `BankAccount`, får den adgang til:
 SavingsAccount account = new SavingsAccount(123456, 0.05);
 account.deposit(1000);      // Fra BankAccount
 account.withdraw(200);      // Fra BankAccount
-System.out.println(account.getBalance()); // Fra BankAccount
+IO.println(account.getBalance()); // Fra BankAccount
 account.applyInterest();    // NY! Fra SavingsAccount
 ```
 
@@ -171,10 +171,10 @@ Nu kan vi teste:
 ```java
 SavingsAccount account = new SavingsAccount(123456, 0.05);
 account.deposit(1000);
-System.out.println(account.getBalance()); // 1000.0
+IO.println(account.getBalance()); // 1000.0
 
 account.withdraw(1200); // Forsøger at hæve mere end saldoen
-System.out.println(account.getBalance()); // Stadig 1000.0!
+IO.println(account.getBalance()); // Stadig 1000.0!
 ```
 
 == Protected access modifier
@@ -227,7 +227,7 @@ public class ChildrensSavingsAccount extends SavingsAccount {
         if (isAdult()) {
             super.withdraw(amount);
         } else {
-            System.out.println(
+            IO.println(
                 "Kan ikke hæve - ejer er ikke myndig");
         }
     }
@@ -487,7 +487,7 @@ Når vi opretter et objekt af en subklasse, kaldes konstruktører i en kæde:
 ```java
 public class BankAccount {
     public BankAccount(int accountNumber) {
-        System.out.println("BankAccount konstruktør");
+        IO.println("BankAccount konstruktør");
         // ...
     }
 }
@@ -496,7 +496,7 @@ public class SavingsAccount extends BankAccount {
     public SavingsAccount(int accountNumber, 
                          double interestRate) {
         super(accountNumber);
-        System.out.println("SavingsAccount konstruktør");
+        IO.println("SavingsAccount konstruktør");
         // ...
     }
 }
@@ -506,7 +506,7 @@ public class ChildrensSavingsAccount extends SavingsAccount {
                                   double interestRate,
                                   LocalDate birthDate) {
         super(accountNumber, interestRate);
-        System.out.println("ChildrensSavingsAccount konstruktør");
+        IO.println("ChildrensSavingsAccount konstruktør");
         // ...
     }
 }

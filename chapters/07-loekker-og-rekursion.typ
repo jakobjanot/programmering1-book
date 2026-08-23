@@ -11,20 +11,18 @@ En løkke er en programmeringsstruktur, der gør det muligt at gentage en blok a
 Forestil dig at du skal lave en vejrtrækningsøvelse, hvor hver cyklus består af fire trin:
 
 ```java
-public class BreathingExercise {
-    public static void main(String[] args) {
-        System.out.println("1. Træk vejret langsomt ind");
-        System.out.println("2. Hold vejret");
-        System.out.println("3. Pust langsomt ud");
-        System.out.println("4. Hold vejret");
-        
-        System.out.println("1. Træk vejret langsomt ind");
-        System.out.println("2. Hold vejret");
-        System.out.println("3. Pust langsomt ud");
-        System.out.println("4. Hold vejret");
-        
-        // ... gentag 8 gange mere?
-    }
+void main() {
+    IO.println("1. Træk vejret langsomt ind");
+    IO.println("2. Hold vejret");
+    IO.println("3. Pust langsomt ud");
+    IO.println("4. Hold vejret");
+
+    IO.println("1. Træk vejret langsomt ind");
+    IO.println("2. Hold vejret");
+    IO.println("3. Pust langsomt ud");
+    IO.println("4. Hold vejret");
+
+    // ... gentag 8 gange mere?
 }
 ```
 
@@ -33,14 +31,14 @@ Som du kan se, bliver dette hurtigt kedeligt og upraktisk. Hvad hvis vi skal gen
 Med metoder kan vi gøre det lidt bedre:
 
 ```java
-public static void breathCycle() {
-    System.out.println("1. Træk vejret langsomt ind");
-    System.out.println("2. Hold vejret");
-    System.out.println("3. Pust langsomt ud");
-    System.out.println("4. Hold vejret");
+void breathCycle() {
+    IO.println("1. Træk vejret langsomt ind");
+    IO.println("2. Hold vejret");
+    IO.println("3. Pust langsomt ud");
+    IO.println("4. Hold vejret");
 }
 
-public static void main(String[] args) {
+void main() {
     breathCycle();
     breathCycle();
     breathCycle();
@@ -63,7 +61,7 @@ while (betingelse) {
 Lad os bruge dette til vejrtrækningsøvelsen:
 
 ```java
-public static void main(String[] args) {
+void main() {
     int repetitions = 10;
     
     while (repetitions > 0) {
@@ -88,7 +86,7 @@ En while-løkke har tre vigtige dele:
 ```java
 int counter = 0;                    // 1. Initialisering
 while (counter < 5) {               // 2. Betingelse
-    System.out.println(counter);
+    IO.println(counter);
     counter++;                      // 3. Opdatering
 }
 ```
@@ -102,7 +100,7 @@ Lav et program hvor brugeren skal gætte et hemmeligt tal:
 4. Fortsæt indtil de gætter rigtigt
 5. Udskriv hvor mange forsøg det tog
 
-Brug Scanner til at læse input fra brugeren.
+Brug `IO.readln` til at læse input fra brugeren.
 ]
 
 == For-løkker
@@ -128,23 +126,23 @@ Du kan tælle på mange måder:
 ```java
 // Tæl op fra 0 til 9
 for (int i = 0; i < 10; i++) {
-    System.out.println(i);
+    IO.println(i);
 }
 
 // Tæl ned fra 10 til 1
 for (int i = 10; i > 0; i--) {
-    System.out.println(i);
+    IO.println(i);
 }
-System.out.println("Lift off!");
+IO.println("Lift off!");
 
 // Tæl med andre intervaller (lige tal)
 for (int i = 0; i < 20; i += 2) {
-    System.out.println(i);
+    IO.println(i);
 }
 
 // Tæl gennem bogstaver
 for (char c = 'A'; c <= 'Z'; c++) {
-    System.out.print(c + " ");
+    IO.print(c + " ");
 }
 ```
 
@@ -171,15 +169,13 @@ Java's `Random` klasse gør det muligt at generere tilfældige tal:
 ```java
 import java.util.Random;
 
-public class RandomExample {
-    public static void main(String[] args) {
-        Random random = new Random();
-        
-        int randomNumber = random.nextInt(100);     // 0-99
-        int diceRoll = random.nextInt(6) + 1;       // 1-6
-        double randomDouble = random.nextDouble();   // 0.0-1.0
-        boolean coinFlip = random.nextBoolean();    // true/false
-    }
+void main() {
+    Random random = new Random();
+
+    int randomNumber = random.nextInt(100);     // 0-99
+    int diceRoll = random.nextInt(6) + 1;       // 1-6
+    double randomDouble = random.nextDouble();   // 0.0-1.0
+    boolean coinFlip = random.nextBoolean();    // true/false
 }
 ```
 
@@ -202,7 +198,7 @@ for (int row = 1; row <= 10; row++) {
     for (int col = 1; col <= 10; col++) {
         System.out.printf("%4d", row * col);
     }
-    System.out.println(); // Ny linje efter hver række
+    IO.println(); // Ny linje efter hver række
 }
 ```
 
@@ -226,7 +222,7 @@ String text = "Hello, World!";
 // Udskriv hvert tegn på en separat linje
 for (int i = 0; i < text.length(); i++) {
     char c = text.charAt(i);
-    System.out.println(c);
+    IO.println(c);
 }
 
 // Tæl hvor mange gange hvert bogstav forekommer
@@ -238,7 +234,7 @@ for (char letter = 'a'; letter <= 'z'; letter++) {
         }
     }
     if (count > 0) {
-        System.out.println(letter + ": " + count);
+        IO.println(letter + ": " + count);
     }
 }
 ```
@@ -284,7 +280,7 @@ int sum = 0;
 for (int i = 1; i <= 100; i++) {
     sum += i;
 }
-System.out.println("Sum: " + sum);
+IO.println("Sum: " + sum);
 
 // Beregn gennemsnit af karakterer
 double[] grades = {7, 4, 10, 12, 2, 7, 10};
@@ -293,7 +289,7 @@ for (int i = 0; i < grades.length; i++) {
     sum += grades[i];
 }
 double average = sum / grades.length;
-System.out.println("Gennemsnit: " + average);
+IO.println("Gennemsnit: " + average);
 ```
 
 #exercise(title: "Diplomberegning")[
@@ -327,13 +323,13 @@ Pas på uendelige løkker! Disse opstår når betingelsen aldrig bliver falsk:
 // FARLIGT - uendelig løkke!
 int i = 0;
 while (i < 10) {
-    System.out.println(i);
+    IO.println(i);
     // Glemte at øge i!
 }
 
 // OGSÅ FARLIGT
 for (int i = 0; i < 10; i--) {  // Tæller nedad i stedet for op!
-    System.out.println(i);
+    IO.println(i);
 }
 ```
 
@@ -344,11 +340,11 @@ Hvis dit program "hænger", er det sandsynligvis en uendelig løkke. Du kan stop
 Rekursion er når en metode kalder sig selv. Det kan nogle gange erstatte løkker:
 
 ```java
-public static void countdown(int n) {
+void countdown(int n) {
     if (n <= 0) {
-        System.out.println("Lift off!");
+        IO.println("Lift off!");
     } else {
-        System.out.println(n);
+        IO.println(n);
         countdown(n - 1);  // Metoden kalder sig selv
     }
 }

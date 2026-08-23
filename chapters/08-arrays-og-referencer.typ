@@ -69,8 +69,8 @@ int lastChest = chests[3];    // 10
 chests[1] = 25;               // Sætter anden kasse til 25
 chests[0] -= 20;              // Fjerner 20 fra første kasse (nu 30)
 
-System.out.println("Første kasse: " + chests[0]);  // 30
-System.out.println("Anden kasse: " + chests[1]);   // 25
+IO.println("Første kasse: " + chests[0]);  // 30
+IO.println("Anden kasse: " + chests[1]);   // 25
 ```
 
 === Array længde
@@ -130,7 +130,7 @@ int[] scores = {85, 92, 78, 94, 88};
 
 // Udskriv alle scores
 for (int i = 0; i < scores.length; i++) {
-    System.out.println("Score " + (i + 1) + ": " + scores[i]);
+    IO.println("Score " + (i + 1) + ": " + scores[i]);
 }
 
 // Beregn gennemsnit
@@ -139,7 +139,7 @@ for (int i = 0; i < scores.length; i++) {
     sum += scores[i];
 }
 double average = (double) sum / scores.length;
-System.out.println("Gennemsnit: " + average);
+IO.println("Gennemsnit: " + average);
 ```
 
 === Enhanced for-løkke (for-each)
@@ -151,7 +151,7 @@ int[] scores = {85, 92, 78, 94, 88};
 
 // Udskriv alle scores
 for (int score : scores) {
-    System.out.println("Score: " + score);
+    IO.println("Score: " + score);
 }
 
 // Find højeste score
@@ -161,7 +161,7 @@ for (int score : scores) {
         highest = score;
     }
 }
-System.out.println("Højeste score: " + highest);
+IO.println("Højeste score: " + highest);
 ```
 
 == Praktisk Eksempel: Parkeringshus
@@ -186,43 +186,43 @@ public class ParkingHouse {
     
     public boolean parkCar(int spotNumber) {
         if (spotNumber < 0 || spotNumber >= spots.length) {
-            System.out.println("Ugyldig plads nummer!");
+            IO.println("Ugyldig plads nummer!");
             return false;
         }
         
         if (spots[spotNumber]) {
-            System.out.println("Plads " + (spotNumber + 1) + " er allerede optaget!");
+            IO.println("Plads " + (spotNumber + 1) + " er allerede optaget!");
             return false;
         }
         
         spots[spotNumber] = true;
         timeOccupied[spotNumber] = System.currentTimeMillis();
-        System.out.println("Bil parkeret på plads " + (spotNumber + 1));
+        IO.println("Bil parkeret på plads " + (spotNumber + 1));
         return true;
     }
     
     public boolean leaveParkingSpot(int spotNumber) {
         if (spotNumber < 0 || spotNumber >= spots.length) {
-            System.out.println("Ugyldig plads nummer!");
+            IO.println("Ugyldig plads nummer!");
             return false;
         }
         
         if (!spots[spotNumber]) {
-            System.out.println("Plads " + (spotNumber + 1) + " er allerede ledig!");
+            IO.println("Plads " + (spotNumber + 1) + " er allerede ledig!");
             return false;
         }
         
         spots[spotNumber] = false;
         timeOccupied[spotNumber] = 0;
-        System.out.println("Bil forlod plads " + (spotNumber + 1));
+        IO.println("Bil forlod plads " + (spotNumber + 1));
         return true;
     }
     
     public void printStatus() {
-        System.out.println("Parkeringshus status:");
+        IO.println("Parkeringshus status:");
         for (int i = 0; i < spots.length; i++) {
             String status = spots[i] ? "Optaget" : "Ledig";
-            System.out.println("Plads " + (i + 1) + ": " + status);
+            IO.println("Plads " + (i + 1) + ": " + status);
         }
     }
     
@@ -240,10 +240,10 @@ public class ParkingHouse {
         long currentTime = System.currentTimeMillis();
         long twoHoursInMillis = 2 * 60 * 60 * 1000;  // 2 timer
         
-        System.out.println("Pladser optaget i over 2 timer:");
+        IO.println("Pladser optaget i over 2 timer:");
         for (int i = 0; i < spots.length; i++) {
             if (spots[i] && (currentTime - timeOccupied[i]) > twoHoursInMillis) {
-                System.out.println("Plads " + (i + 1) + " - Bøde påkrævet!");
+                IO.println("Plads " + (i + 1) + " - Bøde påkrævet!");
             }
         }
     }
@@ -267,28 +267,26 @@ Brug `ParkingHouse` klassen til at:
 Arrays af strings er meget nyttige til at håndtere tekstdata:
 
 ```java
-public class TextAnalyzer {
-    public static void main(String[] args) {
-        String[] weekdays = {"Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"};
-        
-        // Find den længste ugedag
-        String longest = weekdays[0];
-        for (String day : weekdays) {
-            if (day.length() > longest.length()) {
-                longest = day;
-            }
+void main() {
+    String[] weekdays = {"Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"};
+
+    // Find den længste ugedag
+    String longest = weekdays[0];
+    for (String day : weekdays) {
+        if (day.length() > longest.length()) {
+            longest = day;
         }
-        System.out.println("Længste ugedag: " + longest);
-        
-        // Tæl hvor mange dage der indeholder bogstavet 'a'
-        int countWithA = 0;
-        for (String day : weekdays) {
-            if (day.toLowerCase().contains("a")) {
-                countWithA++;
-            }
-        }
-        System.out.println("Antal dage med 'a': " + countWithA);
     }
+    IO.println("Længste ugedag: " + longest);
+
+    // Tæl hvor mange dage der indeholder bogstavet 'a'
+    int countWithA = 0;
+    for (String day : weekdays) {
+        if (day.toLowerCase().contains("a")) {
+            countWithA++;
+        }
+    }
+    IO.println("Antal dage med 'a': " + countWithA);
 }
 ```
 
@@ -299,55 +297,53 @@ Lad os bruge arrays til at bygge en tilfældig pizza generator:
 ```java
 import java.util.Random;
 
-public class PizzaGenerator {
-    public static void main(String[] args) {
-        String[] bases = {"tynd", "tyk", "fuldkorn"};
-        String[] toppings = {"ost", "pepperoni", "ananas", "champignon", "løg", "paprika"};
-        String[] sauces = {"tomat", "hvidløg", "BBQ", "pesto"};
-        
-        Random random = new Random();
-        
-        // Generer tilfældig pizza
-        String base = bases[random.nextInt(bases.length)];
-        String sauce = sauces[random.nextInt(sauces.length)];
-        
-        // Vælg 2-4 tilfældige toppings
-        int numToppings = 2 + random.nextInt(3);  // 2, 3 eller 4
-        String[] selectedToppings = new String[numToppings];
-        
-        for (int i = 0; i < numToppings; i++) {
-            String topping;
-            boolean alreadySelected;
-            
-            // Sørg for at vi ikke vælger samme topping to gange
-            do {
-                topping = toppings[random.nextInt(toppings.length)];
-                alreadySelected = false;
-                
-                for (int j = 0; j < i; j++) {
-                    if (selectedToppings[j].equals(topping)) {
-                        alreadySelected = true;
-                        break;
-                    }
+void main() {
+    String[] bases = {"tynd", "tyk", "fuldkorn"};
+    String[] toppings = {"ost", "pepperoni", "ananas", "champignon", "løg", "paprika"};
+    String[] sauces = {"tomat", "hvidløg", "BBQ", "pesto"};
+
+    Random random = new Random();
+
+    // Generer tilfældig pizza
+    String base = bases[random.nextInt(bases.length)];
+    String sauce = sauces[random.nextInt(sauces.length)];
+
+    // Vælg 2-4 tilfældige toppings
+    int numToppings = 2 + random.nextInt(3);  // 2, 3 eller 4
+    String[] selectedToppings = new String[numToppings];
+
+    for (int i = 0; i < numToppings; i++) {
+        String topping;
+        boolean alreadySelected;
+
+        // Sørg for at vi ikke vælger samme topping to gange
+        do {
+            topping = toppings[random.nextInt(toppings.length)];
+            alreadySelected = false;
+
+            for (int j = 0; j < i; j++) {
+                if (selectedToppings[j].equals(topping)) {
+                    alreadySelected = true;
+                    break;
                 }
-            } while (alreadySelected);
-            
-            selectedToppings[i] = topping;
-        }
-        
-        // Udskriv opskrift
-        System.out.println("=== Tilfældig Pizza Opskrift ===");
-        System.out.println("Bund: " + base);
-        System.out.println("Sovs: " + sauce);
-        System.out.print("Toppings: ");
-        for (int i = 0; i < selectedToppings.length; i++) {
-            System.out.print(selectedToppings[i]);
-            if (i < selectedToppings.length - 1) {
-                System.out.print(", ");
             }
-        }
-        System.out.println();
+        } while (alreadySelected);
+
+        selectedToppings[i] = topping;
     }
+
+    // Udskriv opskrift
+    IO.println("=== Tilfældig Pizza Opskrift ===");
+    IO.println("Bund: " + base);
+    IO.println("Sovs: " + sauce);
+    IO.print("Toppings: ");
+    for (int i = 0; i < selectedToppings.length; i++) {
+        IO.print(selectedToppings[i]);
+        if (i < selectedToppings.length - 1) {
+            IO.print(", ");
+        }
+    }
+    IO.println();
 }
 ```
 
@@ -402,7 +398,7 @@ public class TicTacToe {
     }
     
     public void printBoard() {
-        System.out.println("Spillebræt:");
+        IO.println("Spillebræt:");
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 char symbol;
@@ -416,9 +412,9 @@ public class TicTacToe {
                     default:
                         symbol = '-';
                 }
-                System.out.print(symbol + " ");
+                IO.print(symbol + " ");
             }
-            System.out.println();
+            IO.println();
         }
     }
     
@@ -481,13 +477,13 @@ Reference datatyper gemmer ikke selve værdien, men en *reference* (adresse) til
 int a = 10;
 int b = a;    // b får en kopi af værdien 10
 a = 20;       // Ændrer ikke b
-System.out.println(b);  // Udskriver stadig 10
+IO.println(b);  // Udskriver stadig 10
 
 // Reference datatyper - kopiering af reference
 int[] array1 = {1, 2, 3};
 int[] array2 = array1;  // array2 peger på samme array som array1
 array1[0] = 99;         // Ændrer arrayet
-System.out.println(array2[0]);  // Udskriver 99 (samme array!)
+IO.println(array2[0]);  // Udskriver 99 (samme array!)
 ```
 
 #note[
@@ -504,11 +500,11 @@ char c2 = 65;   // ASCII værdi for 'A'
 char c3 = 86;   // ASCII værdi for 'V'
 char c4 = 65;   // ASCII værdi for 'A'
 
-System.out.println("Jeg elsker " + c1 + c2 + c3 + c4);  // "Jeg elsker JAVA"
+IO.println("Jeg elsker " + c1 + c2 + c3 + c4);  // "Jeg elsker JAVA"
 
 // Vi kan også iterere gennem alfabetet
 for (char c = 'A'; c <= 'Z'; c++) {
-    System.out.print(c);  // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    IO.print(c);  // ABCDEFGHIJKLMNOPQRSTUVWXYZ
 }
 ```
 
@@ -620,7 +616,7 @@ public static void modifyArray(int[] arr) {
 
 int[] myNumbers = {1, 2, 3};
 modifyArray(myNumbers);
-System.out.println(myNumbers[0]);  // Udskriver 999, ikke 1!
+IO.println(myNumbers[0]);  // Udskriver 999, ikke 1!
 ```
 
 == Sammenfatning

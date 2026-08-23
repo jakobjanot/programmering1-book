@@ -15,20 +15,16 @@ En hjælpeklasse er en klasse der indeholder relaterede static metoder, som fung
 Du har allerede brugt en hjælpeklasse - `java.lang.Math`:
 
 ```java
-import java.lang.Math;
+void main() {
+    double result1 = Math.sqrt(16);        // 4.0
+    double result2 = Math.pow(2, 3);       // 8.0
+    int result3 = Math.max(3, 7);          // 7
+    double result4 = Math.PI;              // 3.141592653589793
 
-public class MathExample {
-    public static void main(String[] args) {
-        double result1 = Math.sqrt(16);        // 4.0
-        double result2 = Math.pow(2, 3);       // 8.0
-        int result3 = Math.max(3, 7);          // 7
-        double result4 = Math.PI;              // 3.141592653589793
-        
-        System.out.println("Kvadratrod af 16: " + result1);
-        System.out.println("2 i 3. potens: " + result2);
-        System.out.println("Max af 3 og 7: " + result3);
-        System.out.println("Pi: " + result4);
-    }
+    IO.println("Kvadratrod af 16: " + result1);
+    IO.println("2 i 3. potens: " + result2);
+    IO.println("Max af 3 og 7: " + result3);
+    IO.println("Pi: " + result4);
 }
 ```
 
@@ -65,31 +61,28 @@ Instance metoder tilhører et *objekt*:
 
 ```java
 String text = new String("Hello");
-Scanner input = new Scanner(System.in);
 Random random = new Random(342);
 
 // Kald metoder på objektet
 String upperText = text.toUpperCase();
-String line = input.nextLine();
 int randomNumber = random.nextInt(10);
 ```
 
-=== Hvorfor Static i Main?
+=== Hvorfor Static i Calculator?
 
-Alle vores metoder indtil nu har været static fordi vi kaldte dem fra `main`, som selv er static:
+Vi har set at `main`-metoden ikke behøver at være `static` - Java kan oprette et objekt af den skjulte klasse og kalde `main` på det. Det samme gælder metoder, vi selv skriver i samme fil som `main`:
 
 ```java
-public class Main {
-    public static void main(String[] args) {
-        sayHello();        // Virker - begge er static
-        Main.sayHello();   // Alternativ syntaks (valgfri)
-    }
+void main() {
+    sayHello();
+}
 
-    public static void sayHello() {
-        System.out.println("Hello!");
-    }
+void sayHello() {
+    IO.println("Hello!");
 }
 ```
+
+Men når vi skriver en hjælpeklasse som `Calculator`, der skal kunne bruges fra *andre* filer uden at oprette et objekt (`Calculator.add(5, 3)` i stedet for `new Calculator().add(5, 3)`), skal metoderne markeres `static`. Det er det, der gør dem til værktøjer, man kan bruge direkte via klassens navn.
 
 == Lav Din Egen Lommeregner
 
@@ -131,17 +124,15 @@ public class Calculator {
 === Brug af Lommeregneren
 
 ```java
-public class Main {
-    public static void main(String[] args) {
-        int a = 15;
-        int b = 4;
-        
-        System.out.println(a + " + " + b + " = " + Calculator.add(a, b));
-        System.out.println(a + " - " + b + " = " + Calculator.subtract(a, b));
-        System.out.println(a + " * " + b + " = " + Calculator.multiply(a, b));
-        System.out.println(a + " / " + b + " = " + Calculator.divide(a, b));
-        System.out.println(a + " % " + b + " = " + Calculator.modulo(a, b));
-    }
+void main() {
+    int a = 15;
+    int b = 4;
+
+    IO.println(a + " + " + b + " = " + Calculator.add(a, b));
+    IO.println(a + " - " + b + " = " + Calculator.subtract(a, b));
+    IO.println(a + " * " + b + " = " + Calculator.multiply(a, b));
+    IO.println(a + " / " + b + " = " + Calculator.divide(a, b));
+    IO.println(a + " % " + b + " = " + Calculator.modulo(a, b));
 }
 ```
 
@@ -290,7 +281,7 @@ import dk.kea.calculator.Calculator;
 public class Main {
     public static void main(String[] args) {
         int result = Calculator.add(5, 3);
-        System.out.println("5 + 3 = " + result);
+        IO.println("5 + 3 = " + result);
     }
 }
 ```
@@ -304,7 +295,7 @@ public class Main {
     public static void main(String[] args) {
         // Brug fuldt kvalificeret navn
         int result = dk.kea.calculator.Calculator.add(5, 3);
-        System.out.println("5 + 3 = " + result);
+        IO.println("5 + 3 = " + result);
     }
 }
 ```
@@ -392,11 +383,11 @@ public class DistanceDemo {
     public static void main(String[] args) {
         double distanceInMiles = 26.2;  // Marathon distance
         
-        System.out.println("Marathon distance:");
-        System.out.println(distanceInMiles + " miles");
-        System.out.println(DistanceConverter.milesToKilometers(distanceInMiles) + " km");
-        System.out.println(DistanceConverter.milesToMeters(distanceInMiles) + " meters");
-        System.out.println(DistanceConverter.metersToFeet(
+        IO.println("Marathon distance:");
+        IO.println(distanceInMiles + " miles");
+        IO.println(DistanceConverter.milesToKilometers(distanceInMiles) + " km");
+        IO.println(DistanceConverter.milesToMeters(distanceInMiles) + " meters");
+        IO.println(DistanceConverter.metersToFeet(
             DistanceConverter.milesToMeters(distanceInMiles)) + " feet");
         
         // Test konvertering frem og tilbage
@@ -404,11 +395,11 @@ public class DistanceDemo {
         double miles = DistanceConverter.kilometersToMiles(originalKm);
         double backToKm = DistanceConverter.milesToKilometers(miles);
         
-        System.out.println("\nTest konvertering:");
-        System.out.println("Original: " + originalKm + " km");
-        System.out.println("Til miles: " + miles);
-        System.out.println("Tilbage til km: " + backToKm);
-        System.out.println("Forskel: " + Math.abs(originalKm - backToKm));
+        IO.println("\nTest konvertering:");
+        IO.println("Original: " + originalKm + " km");
+        IO.println("Til miles: " + miles);
+        IO.println("Tilbage til km: " + backToKm);
+        IO.println("Forskel: " + Math.abs(originalKm - backToKm));
     }
 }
 ```

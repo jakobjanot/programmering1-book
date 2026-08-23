@@ -9,12 +9,12 @@ I dette kapitel skal vi lære hvordan vi systematisk kan teste vores kode. Vi st
 Indtil nu har vi testet vores kode ved at køre den manuelt og tjekke output:
 
 ```java
-public static void main(String[] args) {
+void main() {
     BankAccount account = new BankAccount("12345");
     account.deposit(100);
-    System.out.println(account.getBalance()); // Burde være 100
+    IO.println(account.getBalance()); // Burde være 100
     account.withdraw(50);
-    System.out.println(account.getBalance()); // Burde være 50
+    IO.println(account.getBalance()); // Burde være 50
 }
 ```
 
@@ -31,7 +31,7 @@ Hvad hvis vi kunne automatisere testene?
 Java har et `assert` statement til at tjekke antagelser:
 
 ```java
-public static void main(String[] args) {
+void main() {
     BankAccount account = new BankAccount("12345");
     account.deposit(100);
     assert account.getBalance() == 100;

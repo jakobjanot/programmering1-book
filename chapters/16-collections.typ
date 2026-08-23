@@ -181,7 +181,7 @@ Vi kan bruge en for-each løkke ligesom med arrays:
 
 ```java
 for (String make : makes) {
-    System.out.println(make);
+    IO.println(make);
 }
 ```
 
@@ -189,7 +189,7 @@ Eller en traditionel for-løkke:
 
 ```java
 for (int i = 0; i < makes.size(); i++) {
-    System.out.println(makes.get(i));
+    IO.println(makes.get(i));
 }
 ```
 
@@ -197,7 +197,7 @@ for (int i = 0; i < makes.size(); i++) {
 
 ```java
 if (makes.contains("Volvo")) {
-    System.out.println("Vi har Volvo biler!");
+    IO.println("Vi har Volvo biler!");
 }
 ```
 
@@ -211,7 +211,7 @@ makes.clear();
 
 ```java
 if (makes.isEmpty()) {
-    System.out.println("Ingen bilmærker i listen");
+    IO.println("Ingen bilmærker i listen");
 }
 ```
 
@@ -301,25 +301,25 @@ public class Library {
 
     public void addBook(Book book) {
         books.add(book);
-        System.out.println("Tilføjet: " + book);
+        IO.println("Tilføjet: " + book);
     }
 
     public void removeBook(int index) {
         if (index >= 0 && index < books.size()) {
             Book removed = books.remove(index);
-            System.out.println("Fjernet: " + removed);
+            IO.println("Fjernet: " + removed);
         }
     }
 
     public void listBooks() {
         if (books.isEmpty()) {
-            System.out.println("Biblioteket er tomt");
+            IO.println("Biblioteket er tomt");
             return;
         }
 
-        System.out.println("Bøger i biblioteket:");
+        IO.println("Bøger i biblioteket:");
         for (int i = 0; i < books.size(); i++) {
-            System.out.println(i + ": " + books.get(i));
+            IO.println(i + ": " + books.get(i));
         }
     }
 
@@ -347,9 +347,9 @@ library.addBook(new Book("Krøniker fra Narnia", "C.S. Lewis", 1950));
 library.listBooks();
 
 ArrayList<Book> orwellBooks = library.findBooksByAuthor("George Orwell");
-System.out.println("\nBøger af George Orwell:");
+IO.println("\nBøger af George Orwell:");
 for (Book book : orwellBooks) {
-    System.out.println(book);
+    IO.println(book);
 }
 ```
 
@@ -374,7 +374,7 @@ BankAccount acc1 = new BankAccount("123");
 accounts.add(acc1);
 
 acc1.deposit(100);
-System.out.println(accounts.get(0).getBalance()); // 100
+IO.println(accounts.get(0).getBalance()); // 100
 ```
 
 2. *Elementer kan være null*
@@ -387,7 +387,7 @@ names.add("Bob");
 
 for (String name : names) {
     if (name != null) {
-        System.out.println(name.toUpperCase());
+        IO.println(name.toUpperCase());
     }
 }
 ```
@@ -402,7 +402,7 @@ numbers1.add(2);
 ArrayList<Integer> numbers2 = numbers1; // Samme liste!
 numbers2.add(3);
 
-System.out.println(numbers1.size()); // 3
+IO.println(numbers1.size()); // 3
 ```
 
 Hvis vi vil kopiere:

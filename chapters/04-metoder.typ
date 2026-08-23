@@ -15,19 +15,17 @@ En metode er en navngiven blok af kode, der udfører en specifik opgave. Metoder
 Tænk på en metode som en mini-program inden i dit program. Ligesom en opskrift har et navn og beskriver en række trin, har en metode et navn og indeholder kode, der udfører en specifik opgave.
 
 ```java
-public class CakeRecipe {
-    public static void main(String[] args) {
-        System.out.println("Afmål 300 g smør");
-        System.out.println("Put det i skålen");
-        System.out.println("Afmål 200 g sukker");
-        System.out.println("Put det i skålen");
-        System.out.println("Afmål 100 g mel");
-        System.out.println("Put det i skålen");
-        System.out.println("Pisk æggehvider fra 3 æg");
-        System.out.println("Put det i skålen");
-        System.out.println("Put dejen i en bageform");
-        System.out.println("Bag i ovnen i 30 minutter");
-    }
+void main() {
+    IO.println("Afmål 300 g smør");
+    IO.println("Put det i skålen");
+    IO.println("Afmål 200 g sukker");
+    IO.println("Put det i skålen");
+    IO.println("Afmål 100 g mel");
+    IO.println("Put det i skålen");
+    IO.println("Pisk æggehvider fra 3 æg");
+    IO.println("Put det i skålen");
+    IO.println("Put dejen i en bageform");
+    IO.println("Bag i ovnen i 30 minutter");
 }
 ```
 
@@ -38,7 +36,7 @@ I eksemplet ovenfor gentager vi konstant "Put det i skålen". Dette kunne vi gø
 En metode i Java har følgende struktur:
 
 ```java
-public static returtype metodenavn(parametertype parameternavn) {
+returtype metodenavn(parametertype parameternavn) {
     // kode der skal udføres
     return værdi; // kun hvis returtype ikke er void
 }
@@ -47,15 +45,18 @@ public static returtype metodenavn(parametertype parameternavn) {
 Lad os se på et simpelt eksempel:
 
 ```java
-public static void sayHello() {
-    System.out.println("Hej!");
+void sayHello() {
+    IO.println("Hej!");
 }
 ```
 
-- `public static` - nøgleord der fortæller Java hvordan metoden kan bruges
 - `void` - betyder at metoden ikke returnerer en værdi
 - `sayHello` - navnet på metoden
 - `()` - parenteser til parametre (tomme i dette tilfælde)
+
+#note[
+  Når vi skriver flere metoder sammen med `main` i den samme fil (en *compact source file*), skal metoderne hverken være `public` eller `static` - Java gemmer dem alle som medlemmer af en usynlig klasse. Modifierne `public` og `static` bliver først relevante, når vi senere skriver klasser, der skal bruges fra andre filer (se kapitlet om klasser som værktøjskasser).
+]
 
 #exercise(title: "Brød-opskrift")[
   Lav et program der udskriver en brød-opskrift. Start med at skrive hele opskriften i `main`-metoden:
@@ -85,11 +86,11 @@ public static void sayHello() {
 Metoder bliver endnu mere nyttige når de kan modtage input i form af parametre:
 
 ```java
-public static void greet(String name) {
-    System.out.println("Hej, " + name + "!");
+void greet(String name) {
+    IO.println("Hej, " + name + "!");
 }
 
-public static void main(String[] args) {
+void main() {
     greet("Anna");
     greet("Peter");
 }
@@ -102,13 +103,13 @@ Her har metoden `greet` en parameter `name` af typen `String`. Når vi kalder me
 Metoder kan returnere en værdi ved hjælp af `return`-nøgleordet:
 
 ```java
-public static int add(int a, int b) {
+int add(int a, int b) {
     return a + b;
 }
 
-public static void main(String[] args) {
+void main() {
     int result = add(5, 3);
-    System.out.println("Resultatet er: " + result);
+    IO.println("Resultatet er: " + result);
 }
 ```
 
@@ -118,24 +119,24 @@ Når en metode returnerer en værdi, skal vi specificere returtypen (i dette til
   Udfyld de manglende returtyper i følgende metoder:
 
   ```java
-  public static ??? add(int a, int b) {
+  ??? add(int a, int b) {
       return a + b;
   }
 
-  public static ??? add(double a, double b) {
+  ??? add(double a, double b) {
       return a + b;
   }
 
-  public static ??? isWeekend(int dayOfWeek) {
+  ??? isWeekend(int dayOfWeek) {
       return dayOfWeek == 6 || dayOfWeek == 7;
   }
 
-  public static ??? fullName(String firstName, String lastName) {
+  ??? fullName(String firstName, String lastName) {
       return firstName + " " + lastName;
   }
 
-  public static ??? greet(String name) {
-      System.out.println("Hello, " + name + "!");
+  ??? greet(String name) {
+      IO.println("Hello, " + name + "!");
   }
   ```
 ]
@@ -146,8 +147,8 @@ Når en metode returnerer en værdi, skal vi specificere returtypen (i dette til
 Metoder der ikke returnerer en værdi bruger `void` som returtype:
 
 ```java
-public static void printWelcome() {
-    System.out.println("Velkommen til programmet!");
+void printWelcome() {
+    IO.println("Velkommen til programmet!");
 }
 ```
 
@@ -155,7 +156,7 @@ public static void printWelcome() {
 Metoder der beregner og returnerer en værdi:
 
 ```java
-public static double calculateBMI(double weight, double height) {
+double calculateBMI(double weight, double height) {
     return weight / (height * height);
 }
 ```
@@ -164,14 +165,14 @@ public static double calculateBMI(double weight, double height) {
 Metoder kan have mange parametre:
 
 ```java
-public static void printPersonInfo(String name, int age, String city) {
-    System.out.println(name + " er " + age + " år og bor i " + city);
+void printPersonInfo(String name, int age, String city) {
+    IO.println(name + " er " + age + " år og bor i " + city);
 }
 ```
 
 == Formateret udskrift med printf
 
-Indtil nu har vi brugt `System.out.println` til at udskrive tekst. For mere præcis formatering kan vi bruge `System.out.printf`:
+Indtil nu har vi brugt `IO.println` til at udskrive tekst. Det dur fint til simple beskeder, men `IO` har ingen metode til at formatere tal pænt. Til det bruger vi stadig `System.out.printf`:
 
 ```java
 String name = "Benny";
@@ -203,15 +204,15 @@ Formatstrenge:
 Mange børnesange har vers der gentager sig med få ændringer. "Jens Hansens bondegård" er et godt eksempel, hvor hvert vers har et dyr og dets lyde.
 
 ```java
-public static void generateVerse(String animal, String sound) {
-    System.out.println("På Jens Hansens bondegård");
-    System.out.println("Er der en " + animal);
-    System.out.println("Som laver " + sound + ", " + sound);
-    System.out.println("Hele dagen lang");
-    System.out.println();
+void generateVerse(String animal, String sound) {
+    IO.println("På Jens Hansens bondegård");
+    IO.println("Er der en " + animal);
+    IO.println("Som laver " + sound + ", " + sound);
+    IO.println("Hele dagen lang");
+    IO.println();
 }
 
-public static void main(String[] args) {
+void main() {
     generateVerse("hest", "prr-prr");
     generateVerse("ko", "muh-muh");
     generateVerse("gris", "øf-øf");
@@ -235,17 +236,17 @@ double result5 = Math.min(10, 20);   // Mindste værdi: 10.0
 Nogle gange skal vi bruge specielle tegn i strings:
 
 ```java
-System.out.println("Han sagde \"Hej!\"");           // Anførselstegn
-System.out.println("Første linje\nAnden linje");     // Ny linje
-System.out.println("Tab\tmellemrum");               // Tabulator
-System.out.println("Backslash: \\");               // Backslash
+IO.println("Han sagde \"Hej!\"");           // Anførselstegn
+IO.println("Første linje\nAnden linje");     // Ny linje
+IO.println("Tab\tmellemrum");               // Tabulator
+IO.println("Backslash: \\");               // Backslash
 ```
 
 #exercise(title: "Email-brevfletning")[
   Lav en metode der kan generere personlige emails:
 
   ```java
-  public static void generateEmail(String name, String product, double price) {
+  void generateEmail(String name, String product, double price) {
       // Generer en email der hilser på personen og fortæller om produktet
   }
   ```

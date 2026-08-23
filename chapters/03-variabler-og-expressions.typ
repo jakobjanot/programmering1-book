@@ -71,19 +71,17 @@ En variabel er som en "boks" i computerens hukommelse, hvor du kan gemme data. D
 Forestil dig at vi skal lave omelet til flere personer. I stedet for at skrive "2 æg" igen og igen, kan vi gemme antallet i en variabel:
 
 ```java
-public class FlexibelOmelet {
-    public static void main(String[] args) {
-        int eggs = 2;  // Antal æg til 1 person
+void main() {
+    int eggs = 2;  // Antal æg til 1 person
 
-        IO.println("Ingredienser:");
-        IO.println("Æg (stk): " + eggs);
+    IO.println("Ingredienser:");
+    IO.println("Æg (stk): " + eggs);
 
-        IO.println(eggs + " æg slås ud i en skål");
-        IO.println(eggs + " æg piskes sammen");
-        IO.println("Mælk tilsættes");
-        IO.println("Salt tilsættes");
-        IO.println("Steg omeletten på panden");
-    }
+    IO.println(eggs + " æg slås ud i en skål");
+    IO.println(eggs + " æg piskes sammen");
+    IO.println("Mælk tilsættes");
+    IO.println("Salt tilsættes");
+    IO.println("Steg omeletten på panden");
 }
 ```
 
@@ -139,21 +137,19 @@ numberOfBikes = 3;  // Tildeling senere
 
 #exercise(title: "Om mig")[
   1. Lav et nyt Java-projekt kaldet `about-me`
-  2. Opret en klasse kaldet `AboutMe` med en `main` metode
+  2. Opret en compact klasse kaldet `AboutMe` med en `main` metode
   3. Erstat `???` med værdier der passer til dig:
 
   ```java
-  public class AboutMe {
-      public static void main(String[] args) {
-          String familyName = ???;           // Dit efternavn
-          char givenNameInitial = ???;       // Første bogstav i dit fornavn
-          boolean isCoffeeDrinker = ???;     // Drikker du kaffe?
-          boolean isTeaDrinker = ???;        // Drikker du te?
+  void main() {
+      String familyName = ???;           // Dit efternavn
+      char givenNameInitial = ???;       // Første bogstav i dit fornavn
+      boolean isCoffeeDrinker = ???;     // Drikker du kaffe?
+      boolean isTeaDrinker = ???;        // Drikker du te?
 
-          System.out.println("Navn: " + givenNameInitial + ". " + familyName);
-          System.out.println("Kaffe? " + isCoffeeDrinker);
-          System.out.println("Te? " + isTeaDrinker);
-      }
+      IO.println("Navn: " + givenNameInitial + ". " + familyName);
+      IO.println("Kaffe? " + isCoffeeDrinker);
+      IO.println("Te? " + isTeaDrinker);
   }
   ```
 ]
@@ -193,8 +189,8 @@ String message = "Jeg er " + 25 + " år gammel";  // "Jeg er 25 år gammel"
   int myAge = ???;  // Din alder
   int birthYear = currentYear - myAge;
 
-  System.out.println("Jeg er " + myAge + " år gammel");
-  System.out.println("Jeg blev født i " + birthYear);
+  IO.println("Jeg er " + myAge + " år gammel");
+  IO.println("Jeg blev født i " + birthYear);
   ```
 ]
 
@@ -232,9 +228,9 @@ int studentCount;   // Godt - klart hvad det er
   int cookiesPerPerson = 3;
   int totalCookies = guests * cookiesPerPerson;
 
-  System.out.println("Vi har " + guests + " gæster");
-  System.out.println("Hver skal have " + cookiesPerPerson + " cookies");
-  System.out.println("Vi skal bage " + totalCookies + " cookies i alt");
+  IO.println("Vi har " + guests + " gæster");
+  IO.println("Hver skal have " + cookiesPerPerson + " cookies");
+  IO.println("Vi skal bage " + totalCookies + " cookies i alt");
   ```
 ]
 
@@ -244,13 +240,13 @@ Når en variabel er oprettet, kan dens værdi ændres:
 
 ```java
 int score = 0;
-System.out.println("Start score: " + score);  // 0
+IO.println("Start score: " + score);  // 0
 
 score = 10;
-System.out.println("Ny score: " + score);     // 10
+IO.println("Ny score: " + score);     // 10
 
 score = score + 5;
-System.out.println("Final score: " + score);  // 15
+IO.println("Final score: " + score);  // 15
 ```
 
 #note[

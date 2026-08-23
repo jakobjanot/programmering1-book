@@ -18,7 +18,7 @@ Det mest grundlæggende værktøj til beslutninger er `if`-statements. Tænk på
 boolean isWeekend = true;
 
 if (isWeekend) {
-    System.out.println("Jeg ser Netflix!");
+    IO.println("Jeg ser Netflix!");
 }
 ```
 
@@ -29,42 +29,40 @@ Hvis betingelsen i parenteserne er `true`, udføres koden i de krøllede parente
 Ofte vil vi gøre noget andet, hvis betingelsen ikke er opfyldt:
 
 ```java
-public class WeekendRoutine {
-    public static void main(String[] args) {
-        boolean isWeekend = false;
-        
-        wakeUp();
-        
-        if (isWeekend) {
-            watchNetflix();
-        } else {
-            commute();
-            work();
-            commute();
-        }
-        
-        goToBed();
+void main() {
+    boolean isWeekend = false;
+
+    wakeUp();
+
+    if (isWeekend) {
+        watchNetflix();
+    } else {
+        commute();
+        work();
+        commute();
     }
-    
-    public static void wakeUp() {
-        System.out.println("Jeg vågner op");
-    }
-    
-    public static void watchNetflix() {
-        System.out.println("Jeg ser Netflix");
-    }
-    
-    public static void work() {
-        System.out.println("Jeg arbejder");
-    }
-    
-    public static void commute() {
-        System.out.println("Jeg pendler");
-    }
-    
-    public static void goToBed() {
-        System.out.println("Jeg går i seng");
-    }
+
+    goToBed();
+}
+
+void wakeUp() {
+    IO.println("Jeg vågner op");
+}
+
+void watchNetflix() {
+    IO.println("Jeg ser Netflix");
+}
+
+void work() {
+    IO.println("Jeg arbejder");
+}
+
+void commute() {
+    IO.println("Jeg pendler");
+}
+
+void goToBed() {
+    IO.println("Jeg går i seng");
 }
 ```
 
@@ -79,7 +77,7 @@ Lav en portoberegner for PostNord:
 - Op til 20 kg: 160 kr
 
 1. Start med hardcoded vægte og test forskellige scenarier
-2. Udvid så brugeren kan indtaste vægten via Scanner
+2. Udvid så brugeren kan indtaste vægten via `IO.readln`
 3. Håndter vægte over 20 kg med en fejlbesked
 ]
 
@@ -231,7 +229,7 @@ if (isWeekend && stayInside) {
 
 === Metoder der returnerer boolean
 ```java
-public static boolean isBeachWeather(int temp, boolean isRaining) {
+boolean isBeachWeather(int temp, boolean isRaining) {
     return temp > 30 && !isRaining;
 }
 
@@ -245,7 +243,7 @@ if (isWeekend && isBeachWeather(temperature, isRaining)) {
 I stedet for indlejrede if-statements kan vi bruge "guards":
 
 ```java
-public static boolean isBeachWeather(int temp, boolean isRaining) {
+boolean isBeachWeather(int temp, boolean isRaining) {
     if (temp <= 30) {
         return false;  // For koldt
     }
@@ -262,25 +260,25 @@ public static boolean isBeachWeather(int temp, boolean isRaining) {
 Implementer følgende metoder med passende betingelser:
 
 1. ```java
-   public static boolean isTeenager(int age) {
+   boolean isTeenager(int age) {
        // Returnér true hvis alderen er mellem 13 og 19
    }
    ```
 
 2. ```java
-   public static boolean canDrive(int age, boolean hasLicense) {
+   boolean canDrive(int age, boolean hasLicense) {
        // Returnér true hvis personen er 18+ og har kørekort
    }
    ```
 
 3. ```java
-   public static String seasonForMonth(int month) {
+   String seasonForMonth(int month) {
        // Returnér årstiden for måneden (1-12)
    }
    ```
 
 4. ```java
-   public static boolean isBetween(int number, int min, int max) {
+   boolean isBetween(int number, int min, int max) {
        // Returnér true hvis number er mellem min og max (inklusiv)
    }
    ```
@@ -291,7 +289,7 @@ Implementer følgende metoder med passende betingelser:
 Når vi har mange specifikke værdier at tjekke, kan `switch` være mere læseligt end mange `else if`:
 
 ```java
-public static String getDayOfWeek(int dayNumber) {
+String getDayOfWeek(int dayNumber) {
     switch (dayNumber) {
         case 1:
             return "Mandag";
@@ -317,7 +315,7 @@ public static String getDayOfWeek(int dayNumber) {
 Hvis vi ikke bruger `return`, skal vi huske `break`:
 
 ```java
-public static boolean isWeekend(int dayOfWeek) {
+boolean isWeekend(int dayOfWeek) {
     boolean weekend = false;
     
     switch (dayOfWeek) {
@@ -333,7 +331,7 @@ public static boolean isWeekend(int dayOfWeek) {
             weekend = false;
             break;
         default:
-            System.out.println("Ugyldig ugedag!");
+            IO.println("Ugyldig ugedag!");
     }
     
     return weekend;
@@ -344,7 +342,7 @@ public static boolean isWeekend(int dayOfWeek) {
 Switch virker også med strings:
 
 ```java
-public static int getSeasonNumber(String season) {
+int getSeasonNumber(String season) {
     switch (season.toLowerCase()) {
         case "vinter":
             return 1;
@@ -406,7 +404,7 @@ if (Math.abs(price - 0.3) < 0.00001) {
 === String sammenligning
 ```java
 String name1 = "Anna";
-String name2 = scanner.nextLine();
+String name2 = IO.readln("Indtast et navn: ");
 
 // FORKERT
 if (name1 == name2) {
@@ -432,43 +430,32 @@ if (name != null && name.equals("Anna")) {
 Lad os kombinere alt i et større eksempel:
 
 ```java
-import java.util.Scanner;
+void main() {
+    int temperature = Integer.parseInt(IO.readln("Indtast temperatur (°C): "));
+    boolean isRaining = Boolean.parseBoolean(IO.readln("Regner det? (true/false): "));
+    boolean isWeekend = Boolean.parseBoolean(IO.readln("Er det weekend? (true/false): "));
 
-public class WeatherAdvisor {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("Indtast temperatur (°C): ");
-        int temperature = scanner.nextInt();
-        
-        System.out.print("Regner det? (true/false): ");
-        boolean isRaining = scanner.nextBoolean();
-        
-        System.out.print("Er det weekend? (true/false): ");
-        boolean isWeekend = scanner.nextBoolean();
-        
-        String advice = getWeatherAdvice(temperature, isRaining, isWeekend);
-        System.out.println("Anbefaling: " + advice);
+    String advice = getWeatherAdvice(temperature, isRaining, isWeekend);
+    IO.println("Anbefaling: " + advice);
+}
+
+String getWeatherAdvice(int temp, boolean raining, boolean weekend) {
+    if (!weekend) {
+        return "Arbejdsdag - tag på arbejde uanset vejret!";
     }
     
-    public static String getWeatherAdvice(int temp, boolean raining, boolean weekend) {
-        if (!weekend) {
-            return "Arbejdsdag - tag på arbejde uanset vejret!";
-        }
-        
-        if (raining) {
-            return "Det regner - bliv hjemme og hygge dig";
-        }
-        
-        if (temp > 25) {
-            return "Perfekt strandvejr - tag på stranden!";
-        } else if (temp > 15) {
-            return "Godt vejr til en gåtur i parken";
-        } else if (temp > 5) {
-            return "Tag en jakke på og gå en tur";
-        } else {
-            return "Koldt ude - måske læse en bog indendørs?";
-        }
+    if (raining) {
+        return "Det regner - bliv hjemme og hygge dig";
+    }
+    
+    if (temp > 25) {
+        return "Perfekt strandvejr - tag på stranden!";
+    } else if (temp > 15) {
+        return "Godt vejr til en gåtur i parken";
+    } else if (temp > 5) {
+        return "Tag en jakke på og gå en tur";
+    } else {
+        return "Koldt ude - måske læse en bog indendørs?";
     }
 }
 ```

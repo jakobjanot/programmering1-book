@@ -55,24 +55,24 @@ public class BankAccount {
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
-            System.out.println("Indsat: " + amount + " kr. Ny saldo: " + balance + " kr.");
+            IO.println("Indsat: " + amount + " kr. Ny saldo: " + balance + " kr.");
         } else {
-            System.out.println("Beløb skal være positivt");
+            IO.println("Beløb skal være positivt");
         }
     }
     
     public boolean withdraw(double amount) {
         if (amount <= 0) {
-            System.out.println("Beløb skal være positivt");
+            IO.println("Beløb skal være positivt");
             return false;
         }
         
         if (amount <= balance) {
             balance -= amount;
-            System.out.println("Hævet: " + amount + " kr. Ny saldo: " + balance + " kr.");
+            IO.println("Hævet: " + amount + " kr. Ny saldo: " + balance + " kr.");
             return true;
         } else {
-            System.out.println("Ikke nok penge på kontoen");
+            IO.println("Ikke nok penge på kontoen");
             return false;
         }
     }
@@ -96,22 +96,20 @@ public class BankAccount {
 === Brug af BankAccount
 
 ```java
-public class BankDemo {
-    public static void main(String[] args) {
-        BankAccount account = new BankAccount(123456);
-        
-        System.out.println("Initial status: " + account);
-        
-        // Indsæt penge
-        account.deposit(1000);
-        account.deposit(500);
-        
-        // Prøv at hæve
-        account.withdraw(300);
-        account.withdraw(2000);  // Ikke nok penge
-        
-        System.out.println("Final status: " + account);
-    }
+void main() {
+    BankAccount account = new BankAccount(123456);
+
+    IO.println("Initial status: " + account);
+
+    // Indsæt penge
+    account.deposit(1000);
+    account.deposit(500);
+
+    // Prøv at hæve
+    account.withdraw(300);
+    account.withdraw(2000);  // Ikke nok penge
+
+    IO.println("Final status: " + account);
 }
 ```
 
@@ -153,8 +151,8 @@ BankAccount account2 = new BankAccount(222);
 account1.deposit(100);  // Kun account1 påvirkes
 account2.deposit(200);  // Kun account2 påvirkes
 
-System.out.println(account1.getBalance());  // 100
-System.out.println(account2.getBalance());  // 200
+IO.println(account1.getBalance());  // 100
+IO.println(account2.getBalance());  // 200
 ```
 
 == Avanceret BankAccount
@@ -200,7 +198,7 @@ public class AdvancedBankAccount {
         }
         
         if (amount > balance) {
-            System.out.println("Ikke tilstrækkelig saldo");
+            IO.println("Ikke tilstrækkelig saldo");
             return false;
         }
         
@@ -285,7 +283,7 @@ public class Book {
     
     public boolean borrow(String borrowerName) {
         if (!isAvailable) {
-            System.out.println("Bog er allerede udlånt til: " + borrowedBy);
+            IO.println("Bog er allerede udlånt til: " + borrowedBy);
             return false;
         }
         
@@ -293,17 +291,17 @@ public class Book {
         borrowedBy = borrowerName;
         borrowDate = System.currentTimeMillis();
         
-        System.out.println(title + " udlånt til " + borrowerName);
+        IO.println(title + " udlånt til " + borrowerName);
         return true;
     }
     
     public boolean returnBook() {
         if (isAvailable) {
-            System.out.println("Bog er ikke udlånt");
+            IO.println("Bog er ikke udlånt");
             return false;
         }
         
-        System.out.println(title + " returneret af " + borrowedBy);
+        IO.println(title + " returneret af " + borrowedBy);
         
         isAvailable = true;
         borrowedBy = null;
@@ -358,13 +356,13 @@ public class Library {
     
     public boolean addBook(Book book) {
         if (bookCount >= books.length) {
-            System.out.println("Biblioteket er fuldt");
+            IO.println("Biblioteket er fuldt");
             return false;
         }
         
         books[bookCount] = book;
         bookCount++;
-        System.out.println("Bog tilføjet: " + book.getTitle());
+        IO.println("Bog tilføjet: " + book.getTitle());
         return true;
     }
     
@@ -400,28 +398,28 @@ public class Library {
     }
     
     public void listAvailableBooks() {
-        System.out.println("\nTilgængelige bøger i " + name + ":");
+        IO.println("\nTilgængelige bøger i " + name + ":");
         boolean foundAny = false;
         
         for (int i = 0; i < bookCount; i++) {
             if (books[i].isAvailable()) {
-                System.out.println("- " + books[i]);
+                IO.println("- " + books[i]);
                 foundAny = true;
             }
         }
         
         if (!foundAny) {
-            System.out.println("Ingen tilgængelige bøger");
+            IO.println("Ingen tilgængelige bøger");
         }
     }
     
     public void listOverdueBooks() {
-        System.out.println("\nForsinede bøger:");
+        IO.println("\nForsinede bøger:");
         boolean foundAny = false;
         
         for (int i = 0; i < bookCount; i++) {
             if (books[i].isOverdue()) {
-                System.out.println("- " + books[i].getTitle() + 
+                IO.println("- " + books[i].getTitle() + 
                                  " (udlånt til " + books[i].getBorrowedBy() + 
                                  " for " + books[i].getDaysOnLoan() + " dage siden)");
                 foundAny = true;
@@ -429,7 +427,7 @@ public class Library {
         }
         
         if (!foundAny) {
-            System.out.println("Ingen forsinede bøger");
+            IO.println("Ingen forsinede bøger");
         }
     }
     
@@ -449,11 +447,11 @@ public class Library {
             }
         }
         
-        System.out.println("\n=== " + name + " Statistik ===");
-        System.out.println("Total bøger: " + bookCount);
-        System.out.println("Tilgængelige: " + available);
-        System.out.println("Udlånte: " + borrowed);
-        System.out.println("Forsinede: " + overdue);
+        IO.println("\n=== " + name + " Statistik ===");
+        IO.println("Total bøger: " + bookCount);
+        IO.println("Tilgængelige: " + available);
+        IO.println("Udlånte: " + borrowed);
+        IO.println("Forsinede: " + overdue);
     }
 }
 ```
@@ -461,49 +459,47 @@ public class Library {
 === Brug af Biblioteks System
 
 ```java
-public class LibraryDemo {
-    public static void main(String[] args) {
-        Library library = new Library("Hovedbiblioteket", 100);
-        
-        // Tilføj bøger
-        library.addBook(new Book("Allan B. Downey", "Think Java", "9781492072508"));
-        library.addBook(new Book("Rachel Cusk", "Omrids", "9788763851664"));
-        library.addBook(new Book("Yuval Noah Harari", "Sapiens", "9780062316097"));
-        library.addBook(new Book("Robert C. Martin", "Clean Code", "9780132350884"));
-        
-        // Vis tilgængelige bøger
-        library.listAvailableBooks();
-        
-        // Lån nogle bøger
-        Book javaBook = library.findBookByTitle("Think Java");
-        if (javaBook != null) {
-            javaBook.borrow("Alice Anderson");
-        }
-        
-        Book cleanCodeBook = library.findBookByTitle("Clean Code");
-        if (cleanCodeBook != null) {
-            cleanCodeBook.borrow("Bob Brown");
-        }
-        
-        // Vis status efter udlån
-        library.listAvailableBooks();
-        library.printStatistics();
-        
-        // Returnér en bog
-        if (javaBook != null) {
-            javaBook.returnBook();
-        }
-        
-        // Find bøger efter forfatter
-        System.out.println("\nBøger af Yuval Noah Harari:");
-        Book[] harariBooks = library.findBooksByAuthor("Harari");
-        for (Book book : harariBooks) {
-            System.out.println("- " + book);
-        }
-        
-        // Final status
-        library.printStatistics();
+void main() {
+    Library library = new Library("Hovedbiblioteket", 100);
+
+    // Tilføj bøger
+    library.addBook(new Book("Allan B. Downey", "Think Java", "9781492072508"));
+    library.addBook(new Book("Rachel Cusk", "Omrids", "9788763851664"));
+    library.addBook(new Book("Yuval Noah Harari", "Sapiens", "9780062316097"));
+    library.addBook(new Book("Robert C. Martin", "Clean Code", "9780132350884"));
+
+    // Vis tilgængelige bøger
+    library.listAvailableBooks();
+
+    // Lån nogle bøger
+    Book javaBook = library.findBookByTitle("Think Java");
+    if (javaBook != null) {
+        javaBook.borrow("Alice Anderson");
     }
+
+    Book cleanCodeBook = library.findBookByTitle("Clean Code");
+    if (cleanCodeBook != null) {
+        cleanCodeBook.borrow("Bob Brown");
+    }
+
+    // Vis status efter udlån
+    library.listAvailableBooks();
+    library.printStatistics();
+
+    // Returnér en bog
+    if (javaBook != null) {
+        javaBook.returnBook();
+    }
+
+    // Find bøger efter forfatter
+    IO.println("\nBøger af Yuval Noah Harari:");
+    Book[] harariBooks = library.findBooksByAuthor("Harari");
+    for (Book book : harariBooks) {
+        IO.println("- " + book);
+    }
+
+    // Final status
+    library.printStatistics();
 }
 ```
 
@@ -562,9 +558,9 @@ public class BankManager {
     }
     
     public void printAllAccounts() {
-        System.out.println("=== Alle Konti ===");
+        IO.println("=== Alle Konti ===");
         for (int i = 0; i < accountCount; i++) {
-            System.out.println(accounts[i]);
+            IO.println(accounts[i]);
         }
         System.out.printf("Total saldo: %.2f kr.%n", getTotalBalance());
     }
@@ -574,7 +570,7 @@ public class BankManager {
         BankAccount to = findAccount(toAccount);
         
         if (from == null || to == null) {
-            System.out.println("En eller begge konti findes ikke");
+            IO.println("En eller begge konti findes ikke");
             return false;
         }
         
@@ -598,7 +594,7 @@ public class BankManager {
 
 ```java
 BankAccount account = null;  // Peger ikke på noget objekt
-System.out.println(account); // Udskriver: null
+IO.println(account); // Udskriver: null
 
 // Men hvis vi prøver at kalde en metode:
 account.deposit(100);  // NullPointerException!
@@ -613,7 +609,7 @@ public class SafeBankOperations {
         if (account != null) {
             account.deposit(amount);
         } else {
-            System.out.println("Kan ikke indsætte på null konto");
+            IO.println("Kan ikke indsætte på null konto");
         }
     }
     
@@ -645,25 +641,23 @@ public class SafeBankOperations {
 === Object Lifecycle
 
 ```java
-public class ObjectLifecycle {
-    public static void main(String[] args) {
-        // 1. Object Creation
-        BankAccount account = new BankAccount(12345);  // Objekt oprettes i heap
-        
-        // 2. Object Usage
-        account.deposit(100);
-        account.withdraw(50);
-        
-        // 3. Reference Loss
-        account = null;  // Reference fjernes
-        
-        // Nu er objektet "orphaned" - ingen kan komme til det
-        // Garbage Collector vil på et tidspunkt fjerne det fra heap
-        
-        // 4. Automatic Cleanup (Garbage Collection)
-        // Sker automatisk i baggrunden
-        System.gc();  // Forslag til GC (ikke garanti)
-    }
+void main() {
+    // 1. Object Creation
+    BankAccount account = new BankAccount(12345);  // Objekt oprettes i heap
+
+    // 2. Object Usage
+    account.deposit(100);
+    account.withdraw(50);
+
+    // 3. Reference Loss
+    account = null;  // Reference fjernes
+
+    // Nu er objektet "orphaned" - ingen kan komme til det
+    // Garbage Collector vil på et tidspunkt fjerne det fra heap
+
+    // 4. Automatic Cleanup (Garbage Collection)
+    // Sker automatisk i baggrunden
+    System.gc();  // Forslag til GC (ikke garanti)
 }
 ```
 
@@ -674,7 +668,7 @@ BankAccount account1 = new BankAccount(12345);
 BankAccount account2 = account1;  // Samme objekt, to references
 
 account1.deposit(100);
-System.out.println(account2.getBalance());  // 100 - samme objekt!
+IO.println(account2.getBalance());  // 100 - samme objekt!
 
 account1 = null;  // Første reference fjernet
 // Objektet lever stadig fordi account2 stadig peger på det
