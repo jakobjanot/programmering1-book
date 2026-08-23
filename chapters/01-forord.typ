@@ -17,4 +17,4 @@ repository'et.
 
 ---
 
-Forfatter
+Jakob Kofoed Janot
