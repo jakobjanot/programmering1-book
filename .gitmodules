@@ -1,0 +1,3 @@
+[submodule "resources/kea"]
+	path = resources/kea
+	url = https://github.com/jakobjanot/kea

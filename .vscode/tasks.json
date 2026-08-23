@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile Book",
+      "type": "shell",
+      "command": "typst",
+      "args": [
+        "compile",
+        "${workspaceFolder}/main.typ",
+        "${workspaceFolder}/build/main.pdf"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Compile Current File",
+      "type": "shell",
+      "command": "typst",
+      "args": [
+        "compile",
+        "${file}",
+        "${workspaceFolder}/build/${fileBasenameNoExtension}.pdf"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Watch Book",
+      "type": "shell",
+      "command": "typst",
+      "args": [
+        "watch",
+        "${workspaceFolder}/main.typ",
+        "${workspaceFolder}/build/main.pdf"
+      ],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

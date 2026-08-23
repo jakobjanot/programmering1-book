@@ -1,0 +1,13 @@
+# Typst build artifacts
+/build/
+*.log
+*.tmp
+
+# Typst package/cache directories
+.typst/
+
+# macOS
+.DS_Store
+
+# VS Code workspace files
+.vscode/*.code-workspace
