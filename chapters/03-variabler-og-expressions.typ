@@ -1,6 +1,6 @@
 #import "../style.typ": *
 
-= Variabler og expressions
+= Variabler, datatyper og expressions
 
 == Programmer som opskrifter
 
@@ -9,16 +9,13 @@ Et program er ligesom en *opskrift* - en liste af trin der skal følges i række
 Lad os se på et eksempel med en omelet-opskrift:
 
 ```java
-public class OmeletOpskrift {
-    // Opskrift på omelet til 1 person
-    public static void main(String[] args) {
-        System.out.println("2 æg slås ud i en skål");
-        System.out.println("2 æg piskes sammen");
-        System.out.println("Mælk tilsættes");
-        System.out.println("Salt tilsættes");
-        // System.out.println("Chili tilsættes");
-        System.out.println("Steg omeletten på panden");
-    }
+void main() {
+    IO.println("2 æg slås ud i en skål");
+    IO.println("2 æg piskes sammen");
+    IO.println("Mælk tilsættes");
+    IO.println("Salt tilsættes");
+    // IO.println("Chili tilsættes");
+    IO.println("Steg omeletten på panden");
 }
 ```
 
@@ -27,44 +24,44 @@ public class OmeletOpskrift {
 Et *statement* er en instruktion som computeren skal udføre. I Java slutter alle statements med semikolon (`;`):
 
 ```java
-System.out.println("Steg på en pande");
+IO.println("Steg på en pande");
 ```
 
 En *kommentar* er tekst som bliver ignoreret af computeren. Kommentarer starter med `//` og fortsætter til slutningen af linjen:
 
 ```java
 // Dette er en kommentar
-System.out.println("Dette er et statement");
+IO.println("Dette er et statement");
 ```
 
 Kommentarer er nyttige til:
 - At forklare hvad koden gør
-- At "slå en linje fra" så den ikke bliver udført
+- At "slå en linje fra" så den ikke bliver udført - vi kalder det at *udkommentere*.
 
 #exercise(title: "ASCII Art")[
-Konsol-applikationer består udelukkende af tekst. I monospace-fonte (kode-fonte) er alle tegn samme bredde, hvilket gør det muligt at lave "grafik" med tekst.
+  Konsol-applikationer består udelukkende af tekst. I monospace-fonte (kode-fonte) er alle tegn samme bredde, hvilket gør det muligt at lave "grafik" med tekst.
 
-1. Lav et nyt Java-projekt kaldet `asciiart`
-2. Opret en klasse kaldet `AsciiArt` med en `main` metode
-3. Brug `System.out.println` til at printe følgende ASCII art:
+  1. Lav et nyt Java-projekt kaldet `asciiart`
+  2. Opret en compact klasse kaldet `AsciiArt` med en `main` metode
+  3. Brug `IO.println` til at printe følgende ASCII art:
 
-```txt
-#     #                            
-#     # ###### #      #       #### 
-#     # #      #      #      #    #
-####### #####  #      #      #    #
-#     # #      #      #      #    #
-#     # #      #      #      #    #
-#     # ###### ###### ######  ####
-```
+  ```txt
+  #     #
+  #     # ###### #      #       ####
+  #     # #      #      #      #    #
+  ####### #####  #      #      #    #
+  #     # #      #      #      #    #
+  #     # #      #      #      #    #
+  #     # ###### ###### ######  ####
+  ```
 
-4. Prøv at sammensætte flere linjer til én streng:
-```java
-String lines = "Første linje\n" +
-               "Anden linje\n" +
-               "Tredje linje";
-System.out.println(lines);
-```
+  4. Prøv at sammensætte flere linjer til én streng:
+  ```java
+  String lines = "Første linje\n" +
+                 "Anden linje\n" +
+                 "Tredje linje";
+  IO.println(lines);
+  ```
 ]
 
 == Variabler - opbevaring af data
@@ -77,15 +74,15 @@ Forestil dig at vi skal lave omelet til flere personer. I stedet for at skrive "
 public class FlexibelOmelet {
     public static void main(String[] args) {
         int eggs = 2;  // Antal æg til 1 person
-        
-        System.out.println("Ingredienser:");
-        System.out.println("Æg (stk): " + eggs);
-        
-        System.out.println(eggs + " æg slås ud i en skål");
-        System.out.println(eggs + " æg piskes sammen");
-        System.out.println("Mælk tilsættes");
-        System.out.println("Salt tilsættes");
-        System.out.println("Steg omeletten på panden");
+
+        IO.println("Ingredienser:");
+        IO.println("Æg (stk): " + eggs);
+
+        IO.println(eggs + " æg slås ud i en skål");
+        IO.println(eggs + " æg piskes sammen");
+        IO.println("Mælk tilsættes");
+        IO.println("Salt tilsættes");
+        IO.println("Steg omeletten på panden");
     }
 }
 ```
@@ -141,24 +138,24 @@ numberOfBikes = 3;  // Tildeling senere
 ```
 
 #exercise(title: "Om mig")[
-1. Lav et nyt Java-projekt kaldet `about-me`
-2. Opret en klasse kaldet `AboutMe` med en `main` metode
-3. Erstat `???` med værdier der passer til dig:
+  1. Lav et nyt Java-projekt kaldet `about-me`
+  2. Opret en klasse kaldet `AboutMe` med en `main` metode
+  3. Erstat `???` med værdier der passer til dig:
 
-```java
-public class AboutMe {
-    public static void main(String[] args) {
-        String familyName = ???;           // Dit efternavn
-        char givenNameInitial = ???;       // Første bogstav i dit fornavn
-        boolean isCoffeeDrinker = ???;     // Drikker du kaffe?
-        boolean isTeaDrinker = ???;        // Drikker du te?
+  ```java
+  public class AboutMe {
+      public static void main(String[] args) {
+          String familyName = ???;           // Dit efternavn
+          char givenNameInitial = ???;       // Første bogstav i dit fornavn
+          boolean isCoffeeDrinker = ???;     // Drikker du kaffe?
+          boolean isTeaDrinker = ???;        // Drikker du te?
 
-        System.out.println("Navn: " + givenNameInitial + ". " + familyName);
-        System.out.println("Kaffe? " + isCoffeeDrinker);
-        System.out.println("Te? " + isTeaDrinker);
-    }
-}
-```
+          System.out.println("Navn: " + givenNameInitial + ". " + familyName);
+          System.out.println("Kaffe? " + isCoffeeDrinker);
+          System.out.println("Te? " + isTeaDrinker);
+      }
+  }
+  ```
 ]
 
 == Expressions - beregninger og sammensætninger
@@ -187,18 +184,18 @@ String message = "Jeg er " + 25 + " år gammel";  // "Jeg er 25 år gammel"
 ```
 
 #exercise(title: "Fødselsdags-beregner")[
-1. Lav et nyt Java-projekt kaldet `birthyear-calculator`
-2. Opret en klasse med en `main` metode
-3. Brug variabler til at beregne dit fødselsår baseret på din alder:
+  1. Lav et nyt Java-projekt kaldet `birthyear-calculator`
+  2. Opret en klasse med en `main` metode
+  3. Brug variabler til at beregne dit fødselsår baseret på din alder:
 
-```java
-int currentYear = 2024;
-int myAge = ???;  // Din alder
-int birthYear = currentYear - myAge;
+  ```java
+  int currentYear = 2024;
+  int myAge = ???;  // Din alder
+  int birthYear = currentYear - myAge;
 
-System.out.println("Jeg er " + myAge + " år gammel");
-System.out.println("Jeg blev født i " + birthYear);
-```
+  System.out.println("Jeg er " + myAge + " år gammel");
+  System.out.println("Jeg blev født i " + birthYear);
+  ```
 ]
 
 == Navngivning af variabler
@@ -224,21 +221,21 @@ int studentCount;   // Godt - klart hvad det er
 ```
 
 #exercise(title: "Cookies beregning")[
-1. Lav et program der beregner hvor mange cookies der skal laves
-2. Brug følgende variabler:
-   - Antal gæster
-   - Cookies per person
-   - Total antal cookies
+  1. Lav et program der beregner hvor mange cookies der skal laves
+  2. Brug følgende variabler:
+    - Antal gæster
+    - Cookies per person
+    - Total antal cookies
 
-```java
-int guests = 8;
-int cookiesPerPerson = 3;
-int totalCookies = guests * cookiesPerPerson;
+  ```java
+  int guests = 8;
+  int cookiesPerPerson = 3;
+  int totalCookies = guests * cookiesPerPerson;
 
-System.out.println("Vi har " + guests + " gæster");
-System.out.println("Hver skal have " + cookiesPerPerson + " cookies");
-System.out.println("Vi skal bage " + totalCookies + " cookies i alt");
-```
+  System.out.println("Vi har " + guests + " gæster");
+  System.out.println("Hver skal have " + cookiesPerPerson + " cookies");
+  System.out.println("Vi skal bage " + totalCookies + " cookies i alt");
+  ```
 ]
 
 == Ændring af variabel-værdier
@@ -257,7 +254,7 @@ System.out.println("Final score: " + score);  // 15
 ```
 
 #note[
-En variabel kan kun indeholde én værdi ad gangen. Når du tildeler en ny værdi, forsvinder den gamle værdi.
+  En variabel kan kun indeholde én værdi ad gangen. Når du tildeler en ny værdi, forsvinder den gamle værdi.
 ]
 
 == Opsummering
