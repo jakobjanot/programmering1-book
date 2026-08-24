@@ -181,3 +181,48 @@ I dette kapitel har vi lært:
 - Hvad der sker når Java-kode kompileres og køres
 
 Du har nu grundlaget for at begynde at lære programmering i Java!
+
+
+== Øvelser
+
+#exercise(title: "Indrykning")[
+  1. Fortsæt med dit `HelloWorld`-program
+  2. Fjern al indrykning, så koden ligner dette:
+
+  ```java
+  void main() {
+  IO.println("Hello, World!");
+  IO.println("I am learning Java!");
+  }
+  ```
+
+  3. Kør programmet - hvad sker der?
+  4. Brug din editors auto-formatering (fx *Cmd/Ctrl + Alt + L* i IntelliJ) til at indrykke koden igen
+  5. Hvorfor er indrykning vigtig, når Java tilsyneladende er ligeglad med den?
+]
+
+#exercise(title: "Fjern alle mellemrum")[
+  1. Fortsæt med dit `HelloWorld`-program
+  2. Fjern først mellemrum omkring `{`, `}` og efter `;`, så det hele står på én linje. Kør programmet - virker det stadig?
+  3. Fjern derefter *alle* mellemrum, inklusiv dem mellem `void` og `main`:
+
+  ```java
+  voidmain(){IO.println("Hello, World!");}
+  ```
+
+  4. Kør programmet - hvad sker der nu?
+  5. Hvorfor kan Java sagtens undvære indrykning og linjeskift, men ikke *alle* mellemrum? Hvordan skulle compileren ellers kunne kende forskel på `void` og `voidmain`?
+]
+
+#exercise(title: "Fuld af fejl")[
+  Tag udgangspunkt i dit `HelloWorld`-program. Lav én ændring ad gangen, kør programmet, og noter hvilken fejlbesked du får. Ret fejlen igen, før du går videre til den næste:
+
+  1. Fjern `;` i slutningen af en linje
+  2. Fjern en af `{`'erne
+  3. Fjern en af `}`'erne
+  4. Skriv `mian` i stedet for `main`
+  5. Skift `IO.println` ud med `IO.Println` (stort P)
+  6. Skift `println` ud med `print` - kører programmet stadig? Hvad er forskellen?
+
+  Diskuter med din sidemand: Hvad betyder de forskellige fejlbeskeder, og hvordan fandt du ud af, hvad der skulle rettes?
+]

@@ -78,7 +78,7 @@ void sayHello() {
   Bag brødet i ovnen ved 220 grader i 30 minutter
   ```
 
-  Læg mærke til de gentagne trin. Lav metoder for de dele der gentager sig, f.eks. `eltDejen()` og `ladDejenHaeve()`.
+  Læg mærke til de gentagne trin. Lav metoder for de dele der gentager sig, f.eks. `kneadDough()` og `letDoughRise()`.
 ]
 
 == Parametre og argumenter
@@ -100,7 +100,7 @@ Her har metoden `greet` en parameter `name` af typen `String`. Når vi kalder me
 
 == Returværdier
 
-Metoder kan returnere en værdi ved hjælp af `return`-nøgleordet:
+Metoder kan desuden returnere en værdi ved hjælp af `return`-nøgleordet:
 
 ```java
 int add(int a, int b) {
@@ -143,7 +143,7 @@ Når en metode returnerer en værdi, skal vi specificere returtypen (i dette til
 
 == Forskellige typer af metoder
 
-=== Void-metoder
+=== `void`-metoder
 Metoder der ikke returnerer en værdi bruger `void` som returtype:
 
 ```java
@@ -170,7 +170,7 @@ void printPersonInfo(String name, int age, String city) {
 }
 ```
 
-== Formateret udskrift med printf
+== Formateret udskrift
 
 Indtil nu har vi brugt `IO.println` til at udskrive tekst. Det dur fint til simple beskeder, men `IO` har ingen metode til at formatere tal pænt. Til det bruger vi stadig `System.out.printf`:
 
