@@ -155,7 +155,7 @@ Hvis felterne er `private`, hvordan får vi så adgang til værdierne? For eksem
 
 ```java
 BankAccount account = new BankAccount(337898);
-System.out.println(account.balance); // Fejl! balance er private
+IO.println(account.balance); // Fejl! balance er private
 ```
 
 Løsningen er at lave *getter-metoder* (også kaldet accessor methods):
@@ -182,8 +182,8 @@ Nu kan vi få adgang til værdierne:
 ```java
 BankAccount account = new BankAccount(337898);
 account.deposit(500.0);
-System.out.println("Saldo: " + account.getBalance()); // 500.0
-System.out.println("Konto: " + account.getAccountNumber()); // 337898
+IO.println("Saldo: " + account.getBalance()); // 500.0
+IO.println("Konto: " + account.getAccountNumber()); // 337898
 ```
 
 === Navngivningskonvention
@@ -346,7 +346,7 @@ Vi kan bruge den sådan:
 Person person = new Person();
 person.name = "Alfons Åberg";
 person.age = 5;
-System.out.println(person); // Alfons Åberg, 5 år
+IO.println(person); // Alfons Åberg, 5 år
 ```
 
 Men med `public` felter kan vi gøre forkerte ting:
@@ -399,7 +399,7 @@ Nu kan vi bruge klassen sådan:
 Person person = new Person();
 person.setName("Alfons Åberg");
 person.setAge(5);
-System.out.println(person); // Alfons Åberg, 5 år
+IO.println(person); // Alfons Åberg, 5 år
 
 person.setAge(-10);  // Ignoreres - ugyldigt
 person.setAge(200);  // Ignoreres - ugyldigt
@@ -430,9 +430,9 @@ person.setName("Alfons Åberg");
 person.setAge(5);
 
 if (person.isAdult()) {
-    System.out.println("Velkommen!");
+    IO.println("Velkommen!");
 } else {
-    System.out.println("Du er for ung!");
+    IO.println("Du er for ung!");
 }
 ```
 

@@ -57,22 +57,20 @@ public class Contact {
 === Brug af Klassen
 
 ```java
-public class ContactDemo {
-    public static void main(String[] args) {
-        // Opret et nyt Contact objekt
-        Contact victor = new Contact();
-        
-        // Tildel værdier til felterne
-        victor.givenName = "Victor";
-        victor.familyName = "Lukic";
-        victor.email = "lucky@victory.dk";
-        victor.phone = "+45 12 34 56 78";
-        
-        // Brug objektet
-        System.out.println("Navn: " + victor.givenName + " " + victor.familyName);
-        System.out.println("Email: " + victor.email);
-        System.out.println("Telefon: " + victor.phone);
-    }
+void main() {
+    // Opret et nyt Contact objekt
+    Contact victor = new Contact();
+    
+    // Tildel værdier til felterne
+    victor.givenName = "Victor";
+    victor.familyName = "Lukic";
+    victor.email = "lucky@victory.dk";
+    victor.phone = "+45 12 34 56 78";
+    
+    // Brug objektet
+    IO.println("Navn: " + victor.givenName + " " + victor.familyName);
+    IO.println("Email: " + victor.email);
+    IO.println("Telefon: " + victor.phone);
 }
 ```
 
@@ -131,18 +129,16 @@ public class Contact {
 === Brug af Konstruktør
 
 ```java
-public class ContactDemo {
-    public static void main(String[] args) {
-        // Alle felter initialiseres med det samme
-        Contact victor = new Contact("Victor", "Lukic", 
-                                    "lucky@victory.dk", "+45 12 34 56 78");
-        
-        Contact anna = new Contact("Anna", "Larsen", 
-                                  "anna@larsen.dk", "+45 87 65 43 21");
-        
-        System.out.println("Victor: " + victor.email);
-        System.out.println("Anna: " + anna.email);
-    }
+void main() {
+    // Alle felter initialiseres med det samme
+    Contact victor = new Contact("Victor", "Lukic", 
+                                "lucky@victory.dk", "+45 12 34 56 78");
+    
+    Contact anna = new Contact("Anna", "Larsen", 
+                              "anna@larsen.dk", "+45 87 65 43 21");
+    
+    IO.println("Victor: " + victor.email);
+    IO.println("Anna: " + anna.email);
 }
 ```
 
@@ -201,19 +197,17 @@ public class Contact {
 === Brug af Overloaded Konstruktører
 
 ```java
-public class ContactDemo {
-    public static void main(String[] args) {
-        Contact contact1 = new Contact("Victor", "Lukic", 
-                                      "lucky@victory.dk", "+45 12 34 56 78");
-        
-        Contact contact2 = new Contact("Anna", "Larsen", "anna@larsen.dk");
-        
-        Contact contact3 = new Contact("Bob", "Smith");
-        
-        System.out.println("Contact 1 telefon: " + contact1.phone);
-        System.out.println("Contact 2 telefon: " + contact2.phone);  // "N/A"
-        System.out.println("Contact 3 email: " + contact3.email);    // "N/A"
-    }
+void main() {
+    Contact contact1 = new Contact("Victor", "Lukic", 
+                                  "lucky@victory.dk", "+45 12 34 56 78");
+    
+    Contact contact2 = new Contact("Anna", "Larsen", "anna@larsen.dk");
+    
+    Contact contact3 = new Contact("Bob", "Smith");
+    
+    IO.println("Contact 1 telefon: " + contact1.phone);
+    IO.println("Contact 2 telefon: " + contact2.phone);  // "N/A"
+    IO.println("Contact 3 email: " + contact3.email);    // "N/A"
 }
 ```
 
@@ -234,7 +228,7 @@ Implementer et komplet kontakt system:
 
 ```java
 Contact victor = new Contact("Victor", "Lukic", "lucky@victory.dk");
-System.out.println(victor);  // Output: Contact@6bc7c054
+IO.println(victor);  // Output: Contact@6bc7c054
 ```
 
 Standard `toString()` viser kun klassens navn og en hash kode - ikke særlig informativt!
@@ -266,18 +260,16 @@ public class Contact {
 === Brug af toString()
 
 ```java
-public class ContactDemo {
-    public static void main(String[] args) {
-        Contact victor = new Contact("Victor", "Lukic", "lucky@victory.dk");
-        Contact anna = new Contact("Anna", "Larsen", "anna@larsen.dk");
-        
-        System.out.println(victor);  // Victor Lukic <lucky@victory.dk>
-        System.out.println(anna);    // Anna Larsen <anna@larsen.dk>
-        
-        // toString() kaldes automatisk ved string concatenation
-        String message = "Kontakt: " + victor;
-        System.out.println(message);
-    }
+void main() {
+    Contact victor = new Contact("Victor", "Lukic", "lucky@victory.dk");
+    Contact anna = new Contact("Anna", "Larsen", "anna@larsen.dk");
+    
+    IO.println(victor);  // Victor Lukic <lucky@victory.dk>
+    IO.println(anna);    // Anna Larsen <anna@larsen.dk>
+    
+    // toString() kaldes automatisk ved string concatenation
+    String message = "Kontakt: " + victor;
+    IO.println(message);
 }
 ```
 
@@ -396,18 +388,16 @@ public record Contact(String givenName, String familyName, String email) {
 === Brug af Records
 
 ```java
-public class RecordDemo {
-    public static void main(String[] args) {
-        Contact victor = new Contact("Victor", "Lukic", "lucky@victory.dk");
-        Contact anna = new Contact("Anna", "Larsen", "anna@larsen.dk");
-        
-        System.out.println(victor);  // Pæn toString()
-        System.out.println("Email: " + victor.email());  // Getter metode
-        
-        // Sammenligning baseret på værdier, ikke referencer
-        Contact victor2 = new Contact("Victor", "Lukic", "lucky@victory.dk");
-        System.out.println(victor.equals(victor2));  // true
-    }
+void main() {
+    Contact victor = new Contact("Victor", "Lukic", "lucky@victory.dk");
+    Contact anna = new Contact("Anna", "Larsen", "anna@larsen.dk");
+    
+    IO.println(victor);  // Pæn toString()
+    IO.println("Email: " + victor.email());  // Getter metode
+    
+    // Sammenligning baseret på værdier, ikke referencer
+    Contact victor2 = new Contact("Victor", "Lukic", "lucky@victory.dk");
+    IO.println(victor.equals(victor2));  // true
 }
 ```
 
@@ -419,8 +409,8 @@ public class RecordDemo {
 Contact victor1 = new Contact("Victor", "Lukic", "lucky@victory.dk");
 Contact victor2 = new Contact("Victor", "Lukic", "lucky@victory.dk");
 
-System.out.println(victor1 == victor2);       // false (forskellige objekter)
-System.out.println(victor1.equals(victor2));  // false (default equals)
+IO.println(victor1 == victor2);       // false (forskellige objekter)
+IO.println(victor1.equals(victor2));  // false (default equals)
 ```
 
 Standard `equals()` sammenligner kun referencer, ikke indhold.
@@ -525,31 +515,29 @@ public class Person {
 === Brug af Person Klasse
 
 ```java
-public class PersonDemo {
-    public static void main(String[] args) {
-        Person[] people = {
-            new Person("Anna Larsen", 25, "København"),
-            new Person("Bob Smith", 17),
-            new Person("Charlie Brown", 45, "Aarhus"),
-            new Person("Diana Prince", 30, "Odense")
-        };
-        
-        System.out.println("Alle personer:");
-        for (Person person : people) {
-            System.out.println(person);
+void main() {
+    Person[] people = {
+        new Person("Anna Larsen", 25, "København"),
+        new Person("Bob Smith", 17),
+        new Person("Charlie Brown", 45, "Aarhus"),
+        new Person("Diana Prince", 30, "Odense")
+    };
+    
+    IO.println("Alle personer:");
+    for (Person person : people) {
+        IO.println(person);
+    }
+    
+    IO.println("\nVoksne personer:");
+    for (Person person : people) {
+        if (person.isAdult()) {
+            IO.println("- " + person.getName());
         }
-        
-        System.out.println("\nVoksne personer:");
-        for (Person person : people) {
-            if (person.isAdult()) {
-                System.out.println("- " + person.getName());
-            }
-        }
-        
-        System.out.println("\nAldersgrupper:");
-        for (Person person : people) {
-            System.out.println(person.getName() + " -> " + person.getAgeGroup());
-        }
+    }
+    
+    IO.println("\nAldersgrupper:");
+    for (Person person : people) {
+        IO.println(person.getName() + " -> " + person.getAgeGroup());
     }
 }
 ```
@@ -606,7 +594,7 @@ public class ContactManager {
             contacts[count] = contact;
             count++;
         } else {
-            System.out.println("Contact list is full!");
+            IO.println("Contact list is full!");
         }
     }
     
@@ -620,9 +608,9 @@ public class ContactManager {
     }
     
     public void printAllContacts() {
-        System.out.println("Alle kontakter:");
+        IO.println("Alle kontakter:");
         for (int i = 0; i < count; i++) {
-            System.out.println((i + 1) + ". " + contacts[i]);
+            IO.println((i + 1) + ". " + contacts[i]);
         }
     }
     
@@ -659,11 +647,11 @@ public class EmailService {
     
     public static void sendEmail(Contact sender, Contact recipient, 
                                String subject, String body) {
-        System.out.println("Fra: " + sender.getEmail());
-        System.out.println("Til: " + recipient.getEmail());
-        System.out.println("Emne: " + subject);
-        System.out.println("Besked: " + body);
-        System.out.println("Email sendt!");
+        IO.println("Fra: " + sender.getEmail());
+        IO.println("Til: " + recipient.getEmail());
+        IO.println("Emne: " + subject);
+        IO.println("Besked: " + body);
+        IO.println("Email sendt!");
     }
     
     public static void sendBulkEmail(Contact[] recipients, Contact sender,
@@ -671,7 +659,7 @@ public class EmailService {
         for (Contact recipient : recipients) {
             if (recipient != null) {
                 sendEmail(sender, recipient, subject, body);
-                System.out.println("---");
+                IO.println("---");
             }
         }
     }

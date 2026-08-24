@@ -41,13 +41,13 @@ Her er eksempler på korrekt og forkert Java syntaks:
 *Korrekt:*
 ```java
 int age = 18;
-System.out.println("Hello, World!");
+IO.println("Hello, World!");
 ```
 
 *Forkert:*
 ```java
 age = 18 int;        // Forkert rækkefølge
-System.out println("Hello, World!");  // Mangler punktum
+IO.println("Hello, World!")  // Mangler semikolon
 ```
 
 === Whitespace og indrykning
@@ -56,14 +56,12 @@ Whitespace (mellemrum, tabulatorer og linjeskift) er ikke vigtigt for computeren
 
 ```java
 // Korrekt og læsbart
-public class HelloWorld {
-    void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
+void main() {
+    IO.println("Hello, World!");
 }
 
 // Også korrekt, men svært at læse
-public class HelloWorld { void main(String[] args) { System.out.println("Hello, World!"); } }
+void main() { IO.println("Hello, World!"); }
 ```
 
 Vi bruger indrykning for at gøre koden lettere at læse og forstå strukturen.
@@ -75,13 +73,13 @@ For at begynde at programmere i Java, skal vi installere nogle værktøjer på c
 === Installation af Java Development Kit (JDK)
 
 #exercise(title: "Installér Java JDK")[
-  1. Gå til https://adoptium.net/ og download *Java JDK 21*
-  2. Klik på "Other Downloads" og vælg fanen *JDK 21*
+  1. Gå til https://adoptium.net/ og download *Java JDK 25*
+  2. Klik på "Other Downloads" og vælg fanen *JDK 25*
   3. Vælg den version der passer til dit operativsystem (Windows, macOS, Linux)
   4. Åbn den downloadede fil og følg installationsvejledningen
   5. Bekræft installationen ved at åbne Terminal (macOS) eller PowerShell (Windows)
   6. Skriv `java -version` og tryk Enter
-  7. Tjek at der står *version 21* i outputtet
+  7. Tjek at der står *version 25* i outputtet
 ]
 
 === Installation af IntelliJ IDEA
@@ -107,7 +105,7 @@ Nu skal vi skrive vores første Java-program - det klassiske "Hello, World!" pro
   2. Vælg *Java* som projekttype
   3. Udfyld følgende:
     - *Name*: `helloworld`
-    - *JDK*: Vælg JDK 21
+    - *JDK*: Vælg JDK 25
     - *Build system*: IntelliJ
     - Fjern fluebenet i *Add sample code*
   4. Klik *Create*
@@ -116,15 +114,13 @@ Nu skal vi skrive vores første Java-program - det klassiske "Hello, World!" pro
 === Opret din første klasse
 
 #exercise(title: "Hello World program")[
-  1. I venstre sidepanel, højreklik på `src` og vælg *New* → *Java Class*
-  2. Navngiv klassen `HelloWorld`
-  3. Udfyld klassen med følgende kode:
+  1. I venstre sidepanel, højreklik på `src` og vælg *New* → *File*
+  2. Navngiv filen `HelloWorld.java`
+  3. Udfyld filen med følgende kode - læg mærke til at der *ikke* er nogen klasse omkring `main`:
 
   ```java
-  public class HelloWorld {
-      void main(String[] args) {
-          System.out.println("Hello, World!");
-      }
+  void main() {
+      IO.println("Hello, World!");
   }
   ```
 
@@ -135,12 +131,12 @@ Nu skal vi skrive vores første Java-program - det klassiske "Hello, World!" pro
 === Eksperimenter med kommentarer
 
 #exercise(title: "Kommentarer")[
-  1. Sæt `//` foran `System.out.println("Hello, World!");` så det bliver til en kommentar:
+  1. Sæt `//` foran `IO.println("Hello, World!");` så det bliver til en kommentar:
 
   ```java
-    void main(String[] args) {
-        // System.out.println("Hello, World!");
-    }
+  void main() {
+      // IO.println("Hello, World!");
+  }
   ```
 
   2. Kør programmet igen - hvad sker der?
@@ -148,11 +144,9 @@ Nu skal vi skrive vores første Java-program - det klassiske "Hello, World!" pro
   4. Tilføj en ny linje med en anden besked:
 
   ```java
-  public class HelloWorld {
-      void main(String[] args) {
-          System.out.println("Hello, World!");
-          System.out.println("I am learning Java!");
-      }
+  void main() {
+      IO.println("Hello, World!");
+      IO.println("I am learning Java!");
   }
   ```
 ]
@@ -187,3 +181,48 @@ I dette kapitel har vi lært:
 - Hvad der sker når Java-kode kompileres og køres
 
 Du har nu grundlaget for at begynde at lære programmering i Java!
+
+
+== Øvelser
+
+#exercise(title: "Indrykning")[
+  1. Fortsæt med dit `HelloWorld`-program
+  2. Fjern al indrykning, så koden ligner dette:
+
+  ```java
+  void main() {
+  IO.println("Hello, World!");
+  IO.println("I am learning Java!");
+  }
+  ```
+
+  3. Kør programmet - hvad sker der?
+  4. Brug din editors auto-formatering (fx *Cmd/Ctrl + Alt + L* i IntelliJ) til at indrykke koden igen
+  5. Hvorfor er indrykning vigtig, når Java tilsyneladende er ligeglad med den?
+]
+
+#exercise(title: "Fjern alle mellemrum")[
+  1. Fortsæt med dit `HelloWorld`-program
+  2. Fjern først mellemrum omkring `{`, `}` og efter `;`, så det hele står på én linje. Kør programmet - virker det stadig?
+  3. Fjern derefter *alle* mellemrum, inklusiv dem mellem `void` og `main`:
+
+  ```java
+  voidmain(){IO.println("Hello, World!");}
+  ```
+
+  4. Kør programmet - hvad sker der nu?
+  5. Hvorfor kan Java sagtens undvære indrykning og linjeskift, men ikke *alle* mellemrum? Hvordan skulle compileren ellers kunne kende forskel på `void` og `voidmain`?
+]
+
+#exercise(title: "Fuld af fejl")[
+  Tag udgangspunkt i dit `HelloWorld`-program. Lav én ændring ad gangen, kør programmet, og noter hvilken fejlbesked du får. Ret fejlen igen, før du går videre til den næste:
+
+  1. Fjern `;` i slutningen af en linje
+  2. Fjern en af `{`'erne
+  3. Fjern en af `}`'erne
+  4. Skriv `mian` i stedet for `main`
+  5. Skift `IO.println` ud med `IO.Println` (stort P)
+  6. Skift `println` ud med `print` - kører programmet stadig? Hvad er forskellen?
+
+  Diskuter med din sidemand: Hvad betyder de forskellige fejlbeskeder, og hvordan fandt du ud af, hvad der skulle rettes?
+]

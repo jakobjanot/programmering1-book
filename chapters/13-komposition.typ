@@ -13,14 +13,14 @@ accounts[1] = new BankAccount(337899);
 accounts[2] = new BankAccount(337900);
 
 accounts[0].deposit(100);
-System.out.println(accounts[0].balance); // 100.0
+IO.println(accounts[0].balance); // 100.0
 ```
 
 Vi kan iterere over arrays af objekter med en for-each løkke:
 
 ```java
 for (BankAccount account : accounts) {
-    System.out.println("Saldo på konto " + 
+    IO.println("Saldo på konto " + 
         account.accountNumber + ": " + 
         account.balance);
 }
@@ -55,9 +55,9 @@ Når vi opretter et nyt array af objekter, er alle elementerne automatisk sat ti
 
 ```java
 BankAccount[] accounts = new BankAccount[3];
-System.out.println(accounts[0]); // null
-System.out.println(accounts[1]); // null
-System.out.println(accounts[2]); // null
+IO.println(accounts[0]); // null
+IO.println(accounts[1]); // null
+IO.println(accounts[2]); // null
 ```
 
 Dette er anderledes end for primitive typer, hvor standardværdien er 0, false osv.
@@ -74,7 +74,7 @@ accounts[2] = new BankAccount(337900);
 
 for (BankAccount account : accounts) {
     if (account != null) {
-        System.out.println("Saldo: " + account.balance);
+        IO.println("Saldo: " + account.balance);
     }
 }
 ```
@@ -83,7 +83,7 @@ Hvis vi glemmer at tjekke for `null`, kan vi få en `NullPointerException`:
 
 ```java
 String name = null;
-System.out.println(name.length()); // NullPointerException!
+IO.println(name.length()); // NullPointerException!
 ```
 
 Fejlen sker fordi vi prøver at kalde metoden `length()` på en reference, der ikke peger på noget objekt.
@@ -107,10 +107,10 @@ Når vi kalder sådan en metode, skal vi altid tjekke om resultatet er `null`:
 ```java
 BankAccount account = findAccount(123456);
 if (account != null) {
-    System.out.println("Fundet konto med saldo: " + 
+    IO.println("Fundet konto med saldo: " + 
         account.balance);
 } else {
-    System.out.println("Konto ikke fundet");
+    IO.println("Konto ikke fundet");
 }
 ```
 
@@ -165,8 +165,8 @@ Owner owner = new Owner("Hanne Hansen",
 BankAccount account = new BankAccount(337898);
 account.owner = owner;
 
-System.out.println(account.owner.name); // Hanne Hansen
-System.out.println(account.owner.email); // hanne@example.com
+IO.println(account.owner.name); // Hanne Hansen
+IO.println(account.owner.email); // hanne@example.com
 ```
 
 Vi har nu komponeret `BankAccount` af flere dele: et kontonummer, en saldo og en ejer.
@@ -382,13 +382,13 @@ Loan loan1 = new Loan(member1,
                       book1, 
                       LocalDate.of(2024, 6, 1));
 
-System.out.println(loan1);
+IO.println(loan1);
 // Allan B. Downey: Think Java (9781492072508) 
 // - Udlånt til Thorkild Hansen (Lånernummer: 356), 
 // afleveringsfrist 2024-06-15
 
 if (loan1.isOverdue()) {
-    System.out.println("Bogen er forsinket!");
+    IO.println("Bogen er forsinket!");
 }
 ```
 
@@ -459,7 +459,7 @@ owner.address = new Address("Hovedgaden 1",
 
 BankAccount account = new BankAccount(337898, owner);
 
-System.out.println(account.owner.address.city); 
+IO.println(account.owner.address.city); 
 // København
 ```
 
