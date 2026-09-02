@@ -20,7 +20,7 @@
 
   // Set text properties
   set text(
-    font: ("Libertinus Serif", "New Computer Modern", "Times New Roman"),
+    font: ("Libertinus Serif", "New Computer Modern"),
     size: 11pt,
     lang: "da",
   )
@@ -61,7 +61,7 @@
       radius: 4pt,
       inset: 12pt,
     )[
-      #set text(font: ("JetBrains Mono", "Courier New"), size: 10pt)
+      #set text(font: "JetBrains Mono", size: 10pt)
       #it
     ]
   }
@@ -74,7 +74,7 @@
       radius: 2pt,
       inset: (x: 4pt, y: 2pt),
     )[
-      #set text(font: ("JetBrains Mono", "Courier New"), size: 10pt)
+      #set text(font: "JetBrains Mono", size: 10pt)
       #it
     ]
   }
