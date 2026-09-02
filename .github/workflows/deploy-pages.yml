@@ -31,10 +31,10 @@ jobs:
       - name: Install just
         uses: extractions/setup-just@v4
 
-      - name: Install fonts
-        uses: doggy8088/install-custom-fonts-action@v1
-        with:
-          fonts-dir: 'fonts'
+      #- name: Install fonts
+      #  uses: doggy8088/install-custom-fonts-action@v1
+      #  with:
+      #    fonts-dir: 'fonts'
 
       - name: Compile PDF and HTML
         run: just all site
