@@ -8,7 +8,7 @@ default:
 # Compile the PDF version of the book
 pdf out=out_dir:
     mkdir -p {{out}}
-    typst compile main.typ {{out}}/programmering1-java.pdf
+    typst compile --font-path ./fonts main.typ {{out}}/programmering1-java.pdf
 
 # Compile the HTML (website) version of the book
 html out=out_dir:

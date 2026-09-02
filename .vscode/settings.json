@@ -9,6 +9,9 @@
     "tinymist.outputPath": "$root/$dir/$name",
     "tinymist.compileStatus": "enable",
     "tinymist.systemFonts": true,
+    "tinymist.fontPaths": [
+        "fonts"
+    ],
     
     // Editor settings for Typst files
     "[typst]": {
