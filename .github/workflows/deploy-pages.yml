@@ -30,6 +30,9 @@ jobs:
 
       - name: Install just
         uses: extractions/setup-just@v4
+      
+      - name: Install fonts
+        run: apt-get update && apt-get install -y fonts-jetbrains-mono
 
       - name: Compile PDF and HTML
         run: just all site
